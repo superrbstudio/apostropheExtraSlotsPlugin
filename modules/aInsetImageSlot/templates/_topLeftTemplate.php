@@ -19,7 +19,7 @@
 <?php if ($item): ?>
 	<?php $embed = str_replace(array("_WIDTH_", "_HEIGHT_", "_c-OR-s_", "_FORMAT_"), array($dimensions['width'], $dimensions['height'], $dimensions['resizeType'],  $dimensions['format']), $embed) ?>
 	<?php echo $embed ?>
-	<?php if ($options['caption']): ?>
+	<?php if ($options['title']): ?>
 		<p class="a-inset-image-title"><?php echo $item->getTitle() ?></p>		
 	<?php endif ?>
 <?php else: ?>

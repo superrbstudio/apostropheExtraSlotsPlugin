@@ -33,7 +33,7 @@ class BaseaInsetImageSlotComponents extends aSlotComponents
     $this->options['height'] = $this->getOption('height', false);
     $this->options['resizeType'] = $this->getOption('resizeType', 's');
     $this->options['flexHeight'] = $this->getOption('flexHeight', true);
-    $this->options['caption'] = $this->getOption('caption', true);
+    $this->options['title'] = $this->getOption('title', true);
     $this->options['description'] = $this->getOption('description', true);
 		$this->options['itemTemplate'] = $this->getOption('itemTemplate', 'topLeft');
 	}
