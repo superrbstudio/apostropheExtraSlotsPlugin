@@ -14,17 +14,17 @@
 	<?php echo $form->renderHiddenFields() ?>
 </div>
 
-<?php if ($options['description']): ?>
-<?php echo $form['description']->render() ?>
-<?php echo $form['description']->renderError() ?>
+<?php if ($options['value']): ?>
+<?php echo $form['value']->render() ?>
+<?php echo $form['value']->renderError() ?>
 
 	<script type="text/javascript" charset="utf-8">
 	window.apostrophe.registerOnSubmit("<?php echo $id ?>", 
 	  function(slotId)
 	  {
 	    <?php # FCK doesn't do this automatically on an AJAX "form" submit on every major browser ?>
-	    var value = FCKeditorAPI.GetInstance('slot-form-<?php echo $id ?>-description').GetXHTML();
-	    $('#slot-form-<?php echo $id ?>-description').val(value);
+	    var value = FCKeditorAPI.GetInstance('slot-form-<?php echo $id ?>-value').GetXHTML();
+	    $('#slot-form-<?php echo $id ?>-value').val(value);
 	  }
 	);
 	</script>

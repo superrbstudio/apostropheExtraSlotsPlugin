@@ -8,7 +8,7 @@ class BaseaInsetAreaSlotComponents extends aSlotComponents
 		$this->options['width'] = $this->getOption('width', 480);
 		$this->options['areaTemplate'] = $this->getOption('areaTemplate', 'insetArea');
 		$this->options['insetTemplate'] = $this->getOption('insetTemplate', 'topLeft');
-		$this->options['description'] = $this->getOption('description', true);
+		$this->options['value'] = $this->getOption('value', true);
 	 	// Options array for convenience, easy defaults, change it once - applies to all slots
 		$this->areaOptions = array_merge(
 			$this->getOption('areaOptions', array()),
@@ -28,10 +28,10 @@ class BaseaInsetAreaSlotComponents extends aSlotComponents
     if (!isset($this->form))
     {
       $this->form = new aInsetAreaSlotForm($this->id, $this->options);
-      $value = $this->slot->getArrayValue();
-      if (isset($value['description']))
+      $data = $this->slot->getValue('value');
+      if (isset($data))
       {
-        $this->form->setDefault('description', $value['description']);
+        $this->form->setDefault('value', $data);
       }
     }
   }
@@ -40,15 +40,15 @@ class BaseaInsetAreaSlotComponents extends aSlotComponents
   {
     $this->setup();
 		$this->setupOptions();
-    $data = $this->slot->getArrayValue();
-    if ($this->options['description'])
+    $data = $this->slot->getValue('value');
+    if ($this->options['value'])
     {
-			if (isset($data['description'])) {
-      	$this->options['description'] = $data['description'];
+			if (isset($data['value'])) {
+      	$this->options['value'] = $data;
 			}
 			else
 			{
-      	$this->options['description'] = false;
+      	$this->options['value'] = false;
 			}
     }
   }

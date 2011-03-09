@@ -2,24 +2,6 @@
 
 class BaseaInsetAreaSlotActions extends aSlotActions
 {
-  // Area association is handled by a separate action
-  public function executeArea(sfRequest $request)
-  {
-    if ($request->getParameter('aMediaCancel'))
-    {
-      return $this->redirectToPage();
-    }
-    $this->logMessage("====== in aInsetAreaSlotActions::executeArea", "info");
-    $this->editSetup();
-    $item = Doctrine::getTable('aMediaItem')->find($request->getParameter('aMediaId'));
-    if ((!$item) || ($item->type !== 'image'))
-    {
-      return $this->redirectToPage();
-    }
-    $this->slot->unlink('MediaItems');
-    $this->slot->link('MediaItems', array($item->id));
-    $this->editSave();
-  }
   
   // Use the edit view for the URL (and any other well-behaved fields that may arise) 
   public function executeEdit(sfRequest $request)
@@ -46,11 +28,10 @@ class BaseaInsetAreaSlotActions extends aSlotActions
 		$this->form->bind($value);
 		if ($this->form->isValid())
 		{
-			$value = $this->slot->getArrayValue();
-			$value['description'] = $this->form->getValue('description');
-			$this->slot->setArrayValue($value);
-			$result = $this->editSave();
-			return $result;
+      $value = $this->form->getValue('value');
+      $this->slot->value = $value;      
+      $result = $this->editSave();
+      return $result;
 		}
 		else
 		{

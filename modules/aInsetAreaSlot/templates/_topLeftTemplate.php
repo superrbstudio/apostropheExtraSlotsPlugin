@@ -27,6 +27,6 @@
 )) ?>
 </div>
 
-<?php if ($options['description']): ?>
-  <?php echo $options['description'] ?>
+<?php if ($options['value']): ?>
+  <?php echo $options['value'] ?>
 <?php endif ?>

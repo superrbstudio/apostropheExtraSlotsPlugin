@@ -41,18 +41,11 @@ class BaseaInsetAreaSlotForm extends BaseForm
       $widgetOptions['tool'] = $tool;
     }
 
-    $this->setWidgets(array(
-			'description' => new aWidgetFormRichTextarea($widgetOptions, $this->soptions),
-		));
-
-    $this->setValidators(array(
-			'description' => new sfValidatorHtml(array('required' => false, 'allowed_tags' => $this->allowedTags, 'allowed_attributes' => $this->allowedAttributes, 'allowed_styles' => $this->allowedStyles)),
-		));
+    $this->setWidgets(array('value' => new aWidgetFormRichTextarea($widgetOptions, $this->soptions)));
+    $this->setValidators(array('value' => new sfValidatorHtml(array('required' => false, 'allowed_tags' => $this->allowedTags, 'allowed_attributes' => $this->allowedAttributes, 'allowed_styles' => $this->allowedStyles))));
 
     // Ensures unique IDs throughout the page. Hyphen between slot and form to please our CSS
     $this->widgetSchema->setNameFormat('slot-form-' . $this->id . '-%s');
-
-    // You don't have to use our form formatter, but it makes things nice
     $this->widgetSchema->setFormFormatterName('aAdmin');
 		$this->widgetSchema->getFormFormatter()->setTranslationCatalogue('apostrophe');
   }
