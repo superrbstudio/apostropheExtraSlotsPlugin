@@ -9,7 +9,4 @@
 .a-slot.aInsetArea .topleft .a-inset-area-container { float: left; margin: 0 10px 5px 0; }
 .a-slot.aInsetArea .topright .a-inset-area-container { float: right; margin: 0 0 5px 10px; }
 
-.a-slot.aInsetArea .a-area { background: rgba(0,0,0,0.125); padding: 10px; -moz-border-radius: 4px;
--webkit-border-radius: 4px;
-border-radius: 4px;
- }
+.a-slot.aInsetArea .a-area { background: rgba(0,0,0,0.125); padding: 10px; -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px; }
