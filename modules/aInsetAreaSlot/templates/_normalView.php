@@ -3,6 +3,7 @@
   $editable = isset($editable) ? $sf_data->getRaw('editable') : null;
   $name = isset($name) ? $sf_data->getRaw('name') : null;
   $options = isset($options) ? $sf_data->getRaw('options') : null;
+  $areaOptions = isset($areaOptions) ? $sf_data->getRaw('areaOptions') : null;
   $page = isset($page) ? $sf_data->getRaw('page') : null;
   $pageid = isset($pageid) ? $sf_data->getRaw('pageid') : null;
   $permid = isset($permid) ? $sf_data->getRaw('permid') : null;
@@ -23,6 +24,7 @@
 		'editable' => $editable,
 		'name' => $name,
 		'options' => $options,
+		'areaOptions' => $areaOptions, 
 		'page' => $page,
 		'pageid' => $pageid,
 		'permid' => $permid,

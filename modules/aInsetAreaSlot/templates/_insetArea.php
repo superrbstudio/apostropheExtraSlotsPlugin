@@ -1,6 +1,3 @@
-<?php // Options array for convenience, easy defaults, change it once - applies to all slots ?>
-<?php $areaOptions = array('width' => $options['width'], 'height' => false, 'resizeType' => 's', 'flexHeight' => true) ?>
-
 <?php a_area('inset-'.$name.'-'.$permid, array(
 	'allowed_types' => array(
 		'aRichText',

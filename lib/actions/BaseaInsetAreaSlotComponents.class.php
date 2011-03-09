@@ -8,7 +8,17 @@ class BaseaInsetAreaSlotComponents extends aSlotComponents
 		$this->options['width'] = $this->getOption('width', 480);
 		$this->options['areaTemplate'] = $this->getOption('areaTemplate', 'insetArea');
 		$this->options['insetTemplate'] = $this->getOption('insetTemplate', 'topLeft');
-		$this->options['description'] = $this->getOption('description', true);		
+		$this->options['description'] = $this->getOption('description', true);
+	 	// Options array for convenience, easy defaults, change it once - applies to all slots
+		$this->areaOptions = array_merge(
+			$this->getOption('areaOptions', array()),
+			array(
+				'width' => $this->options['width'],
+				'height' => false,
+				'resizeType' => 's',
+				'flexHeight' => true
+			)
+		);
 	}
 
   public function executeEditView()
