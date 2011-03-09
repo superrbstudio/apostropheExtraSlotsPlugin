@@ -1,4 +1,6 @@
 <?php a_area('inset-'.$name.'-'.$permid, array(
+	'slug' => (isset($areaOptions['slug'])) ? $areaOptions['slug'] : null, 
+	'edit' => (isset($areaOptions['edit'])) ? $areaOptions['edit'] : null,
 	'allowed_types' => array(
 		'aRichText',
 		'aVideo',
