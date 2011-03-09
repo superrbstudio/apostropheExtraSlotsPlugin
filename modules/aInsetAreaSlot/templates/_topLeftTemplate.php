@@ -12,7 +12,7 @@
 
 <?php // Instead of passing in a bunch of variables to the area from the aInsetAreaSlot ?> 
 <?php // Let's just allow for an area template file that can be manipulated like any typical area ?>
-<div class="a-inset-area-container">
+<div class="a-inset-area-container" style="width:<?php echo $options['width'] ?>px;">
 <?php include_partial('aInsetAreaSlot/'.$options['areaTemplate'], array(
 	'editable' => $editable,
 	'name' => $name,
