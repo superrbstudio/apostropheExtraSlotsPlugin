@@ -24,11 +24,11 @@ abstract class PluginaInsetImageSlot extends BaseaInsetImageSlot
     // This is a noncritical feature so it doesn't have to be as precise
     // as strip_tags and shouldn't try to substitute for it in the matter of 
     // actually removing the tags
-		$value = $this->slot->getArrayValue();
+		$value = $this->getArrayValue();
 		if (isset($value['description'])) 
 		{
-	    $this->value = preg_replace("/(<p>|<br.*?>|<blockquote>|<li>|<dt>|<dd>|<nl>|<ol>)/i", "$1\n", $value['description']);
-	    return aHtml::toPlaintext($this->value);
+	    $value = preg_replace("/(<p>|<br.*?>|<blockquote>|<li>|<dt>|<dd>|<nl>|<ol>)/i", "$1\n", $value['description']);
+	    return aHtml::toPlaintext($value);
 		}
 		return false;
   }
@@ -52,7 +52,7 @@ abstract class PluginaInsetImageSlot extends BaseaInsetImageSlot
     /* 
       Already cleaned by aHtml::simplify
     */
-		$value = $this->slot->getArrayValue();
+		$value = $this->getArrayValue();
 		return (isset($value['description'])) ? $value['description'] : false;
   }
 
