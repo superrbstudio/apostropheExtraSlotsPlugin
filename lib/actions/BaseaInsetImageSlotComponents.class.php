@@ -35,7 +35,7 @@ class BaseaInsetImageSlotComponents extends aSlotComponents
     $this->options['flexHeight'] = $this->getOption('flexHeight', true);
     $this->options['title'] = $this->getOption('title', true);
     $this->options['description'] = $this->getOption('description', true);
-		$this->options['itemTemplate'] = $this->getOption('itemTemplate', 'topLeft');
+		$this->options['insetTemplate'] = $this->getOption('insetTemplate', 'topLeft');
 	}
 
   public function executeEditView()

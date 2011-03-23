@@ -22,8 +22,8 @@
   <?php end_slot() ?>
 <?php endif ?>
 
-<div class="a-inset-image-slot <?php echo aTools::slugify($options['itemTemplate']) ?>">
-<?php include_partial('aInsetImageSlot/'.$options['itemTemplate'].'Template',
+<div class="a-inset-image-slot <?php echo aTools::slugify($options['insetTemplate']) ?>">
+<?php include_partial('aInsetImageSlot/'.$options['insetTemplate'].'Template',
 	array(
 		'dimensions' => $dimensions,
 		'constraints' => $options['constraints'],
