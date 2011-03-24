@@ -18,7 +18,7 @@
 <?php echo $form['value']->render() ?>
 <?php echo $form['value']->renderError() ?>
 
-	<script type="text/javascript" charset="utf-8">
+	<script type="text/javascript">
 	window.apostrophe.registerOnSubmit("<?php echo $id ?>", 
 	  function(slotId)
 	  {
