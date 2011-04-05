@@ -21,32 +21,19 @@
 
 <h3><?php echo ($map['title']) ? $map['title'] : 'Map' ?></h3>
 
-<div class="a-map" id="a-map-<?php echo "$pageid-$name-$permid" ?>"><?php echo ($map['address']) ? $map['address'] : 'Map Address' ?></div>
+<div class="a-map" id="a-map-<?php echo "$pageid-$name-$permid" ?>" style="width:<?php echo $options['width'] ?>px;height:<?php echo $options['height'] ?>px;">
+	<?php echo ($map['address']) ? $map['address'] : 'Map Address' ?>
+</div>
 
 <div class="a-map-lng-lat">
 <?php echo $map['longitude'] ?>, <?php echo $map['latitude'] ?>
 </div>
 
+<?php a_js_call('aMapSlot.loadGoogleMapsAPI()') ?>
 
-<script type="text/javascript" charset="utf-8">
-
-// this will become an a_js_call in the slot normal view
-
-function initialize() {
-  var myLatlng = new google.maps.LatLng(-34.397, 150.644);
-  var myOptions = {
-    zoom: 8,
-    center: myLatlng,
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-  }
-  var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-}	
-</script>
-
-<script type="text/javascript" charset="utf-8">
-
-// the google maps api gets loaded only once, if there's any map slots on that page.
-
-	
-</script>
-  
+<?php a_js_call('aMapSlot.createGoogleMap(?)', array(
+	'longitude' => $map['longitude'],
+	'latitude' => $map['latitude'], 
+	'zoom' => $options['zoom'], 
+	'container' => '#a-map-'.$pageid.'-'.$name.'-'.$permid,
+)) ?>
