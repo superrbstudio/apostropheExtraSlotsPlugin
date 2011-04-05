@@ -29,8 +29,6 @@
 <?php echo $map['longitude'] ?>, <?php echo $map['latitude'] ?>
 </div>
 
-<?php a_js_call('aMapSlot.loadGoogleMapsAPI()') ?>
-
 <?php a_js_call('aMapSlot.createGoogleMap(?)', array(
 	'longitude' => $map['longitude'],
 	'latitude' => $map['latitude'], 
