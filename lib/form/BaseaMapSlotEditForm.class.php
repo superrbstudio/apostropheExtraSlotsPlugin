@@ -52,11 +52,9 @@ class aMapSlotEditForm extends BaseForm
 				throw new sfValidatorError($validator, 'Invalid address');
 			}
 			$values['address'] = $geocode['results'][0]['formatted_address'];
-			$values['latitude'] = $geocode['results'][0]['geometry']['location']['lat'];
-			$values['longitude'] = $geocode['results'][0]['geometry']['location']['lng'];
+			$values['latitude'] = (float) $geocode['results'][0]['geometry']['location']['lat'];
+			$values['longitude'] = (float) $geocode['results'][0]['geometry']['location']['lng'];
 		}
-		$values['latitude'] = (float) $values['latitude'];
-		$values['longitude'] = (float) $values['longitude'];
 		return $values;
 	}
 

@@ -19,19 +19,30 @@
   <?php end_slot() ?>
 <?php endif ?>
 
-<h3><?php echo ($map['title']) ? $map['title'] : 'Map' ?></h3>
+<?php if ($editable && !$options['address']): ?>
+	<?php (isset($options['width']) && $options['width'])?  $width = $options['width'] .'px;': $width = '100%;'; ?>
+	<?php (isset($options['height']) && $options['height'])? $height = $options['height'].'px;' : $height = (($options['width']) ? floor($options['width']*.56):'100px;'); ?>		
+	<?php $style = 'width:'.$width.' height:'.$height ?>
+	<div class="a-media-placeholder" style="<?php echo $style ?>">
+		<span style="line-height:<?php echo $height ?>px;">Click edit to setup a map</span>
+	</div>
+<?php endif ?>
+
+<?php if ($options['address']): ?>
+
+<h3 class="a-map-title"><?php echo ($options['title']) ? $options['title'] : 'Map' ?></h3>
 
 <div class="a-map" id="a-map-<?php echo "$pageid-$name-$permid" ?>" style="width:<?php echo $options['width'] ?>px;height:<?php echo $options['height'] ?>px;">
-	<?php echo ($map['address']) ? $map['address'] : 'Map Address' ?>
-</div>
-
-<div class="a-map-lng-lat">
-<?php echo $map['longitude'] ?>, <?php echo $map['latitude'] ?>
+	<span class="a-map-address"><?php echo ($options['address']) ? $options['address'] : '' ?></span>
 </div>
 
 <?php a_js_call('aMapSlot.createGoogleMap(?)', array(
-	'longitude' => $map['longitude'],
-	'latitude' => $map['latitude'], 
+	'title' => $options['title'], 
+	'longitude' => $options['longitude'],
+	'latitude' => $options['latitude'], 
 	'zoom' => $options['zoom'], 
+	'controls' => (($options['controls']) ? array('pan' => $options['controls']['pan'], 'zoom' => $options['controls']['zoom'], 'scale' => $options['controls']['scale']) : false), 
 	'container' => '#a-map-'.$pageid.'-'.$name.'-'.$permid,
-)) ?>
+)) ?>	
+
+<?php endif ?>

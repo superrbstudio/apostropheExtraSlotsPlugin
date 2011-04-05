@@ -1,4 +1,4 @@
-function aMapSlotConstructor() 
+function aMapSlotConstructor()
 {
 	// API loaded flag
 	// Don't let the object context change -
@@ -6,7 +6,7 @@ function aMapSlotConstructor()
 	// something else entirely later if you pass a method
 	// that's a property of our object. $this is guaranteed
 	// to be the original object when we constructed it
-	
+
 	var $this = this;
 	$this.isLoaded = 0;
   $this.isLoading = 0;
@@ -15,7 +15,7 @@ function aMapSlotConstructor()
 		$this.isLoaded = 1;
 		apostrophe.log('aMapSlot -- Maps API Loaded');
 	};
-	
+
 	// Call to load the Google Maps API
 	$this.loadGoogleMapsAPI = function() {
 		if ($this.isLoading)
@@ -33,36 +33,50 @@ function aMapSlotConstructor()
 		  document.body.appendChild(script);
 		}
 	};
-	
+
 	$this.createGoogleMap = function(options)
-	{	
+	{
 		apostrophe.log('aMapSlot -- createGoogleMap');
 		if ($this.isLoaded)
 		{
-				apostrophe.log('aMapSlot -- createGoogleMap: isLoaded');	
-				// Cute default: Punk Ave Studio
-				var aLatitude = options['latitude'] ? options['latitude'] : '39.934259';
-				var aLongitude = options['longitude'] ? options['longitude'] : '-75.158228';
+				apostrophe.log('aMapSlot -- createGoogleMap: isLoaded');
+				var aLatitude = options['latitude'] ? options['latitude'] : '39.934259'; // Cute default: Punk Ave Studio
+				var aLongitude = options['longitude'] ? options['longitude'] : '-75.158228'; // Cute default: Punk Ave Studio
 				var aZoom = options['zoom'] ? options['zoom'] : 14;
-				var aMapType = options['mapType'] ? options['mapType'] : 'ROADMAP';
-				var aMapContainer = $(options['container']);			
-				
+				var aMapType = options['mapType'] ? options['mapType'] : 'roadmap';
+				var aMapContainer = $(options['container']);
+				var aControls = options['controls'];
+				var aMapTypeOptions = {
+					'terrain' : google.maps.MapTypeId.TERRAIN,
+					'roadmap' : google.maps.MapTypeId.ROADMAP,
+					'satellite' : google.maps.MapTypeId.SATELLITE,
+					'hybrid' : google.maps.MapTypeId.HYBRID
+				}
+
 				if (aMapContainer.length)
 				{
 					var aLatlng = new google.maps.LatLng(aLatitude, aLongitude);
 					var aOptions = {
 						zoom: aZoom,
 						center: aLatlng,
-						mapTypeId: google.maps.MapTypeId.ROADMAP
-						// mapTypeId: google.maps.MapTypeId. + aMapType
-					}		
-					var map = new google.maps.Map(aMapContainer[0], aOptions);				
+						disableDefaultUI: true, // Disables the entire UI
+				    panControl: aControls['pan'], // Selectively re-enable elements
+				    zoomControl: aControls['zoom'],
+				    scaleControl: aControls['scale'],
+						mapTypeId: aMapTypeOptions[aMapType]
+					}
+					var map = new google.maps.Map(aMapContainer[0], aOptions);
+					var marker = new google.maps.Marker({
+			      position: aLatlng,
+			      map: map,
+			      title: options['title']
+				  });
 				}
 				else
 				{
 					// Letting you know your map container ID is bad
 					apostrophe.log('aMapSlot -- Map container not found.');
-				}			
+				}
 		}
 		else
 		{
@@ -70,9 +84,9 @@ function aMapSlotConstructor()
 			$this.loadGoogleMapsAPI();
 			var tryAgain = window.setTimeout($this.createGoogleMap, 1000, options);
 		}
-			
+
 	};
-	
+
 }
 
 window.aMapSlot = new aMapSlotConstructor();
