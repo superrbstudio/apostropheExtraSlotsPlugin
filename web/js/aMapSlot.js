@@ -57,7 +57,7 @@ function aMapSlotConstructor()
 				{
 					var aLatlng = new google.maps.LatLng(aLatitude, aLongitude);
 					var aOptions = {
-						zoom: aZoom,
+						zoom: parseInt(aZoom),
 						center: aLatlng,
 						disableDefaultUI: true, // Disables the entire UI
 				    panControl: aControls['pan'], // Selectively re-enable elements
