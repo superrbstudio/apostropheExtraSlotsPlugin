@@ -11,3 +11,6 @@
 
 .a-insetimage > .icon { background-image: url(../images/a-icon-inset-image.png); }
 .alt .a-insetimage > .icon, .alt.a-insetimage > .icon { background-image: url(../images/a-icon-alt-inset-image.png); }
+
+.a-insetarea > .icon { background-image: url(../areas/a-icon-inset-area.png); }
+.alt .a-insetarea > .icon, .alt.a-insetarea > .icon { background-image: url(../areas/a-icon-alt-inset-area.png); }
