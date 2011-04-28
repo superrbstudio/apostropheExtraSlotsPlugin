@@ -5,6 +5,7 @@
 
 <?php
   // Compatible with sf_escaping_strategy: true
+  $editable = isset($editable) ? $sf_data->getRaw('editable') : null;
   $aBlogPosts = isset($aBlogPosts) ? $sf_data->getRaw('aBlogPosts') : null;
   $name = isset($name) ? $sf_data->getRaw('name') : null;
   $options = isset($options) ? $sf_data->getRaw('options') : null;
@@ -17,7 +18,7 @@
 ?>
 
 <div class="a-blog-sideshow" id="a-blog-slideshow-<?php echo $id ?>">
-	<?php include_partial('aBlogSlot/normalView', array('aBlogPosts' => $aBlogPosts, 'name' => $name, 'options' => $options, 'page' => $page, 'permid' => $permid, 'slot' => $slot)) ?>
+	<?php include_partial('aBlogSlot/normalView', array('aBlogPosts' => $aBlogPosts, 'name' => $name, 'options' => $options, 'page' => $page, 'permid' => $permid, 'slot' => $slot, 'editable' => $editable)) ?>
 </div>
 
 <?php if ($options['arrows'] && (count($aBlogPosts) > 1)): ?>

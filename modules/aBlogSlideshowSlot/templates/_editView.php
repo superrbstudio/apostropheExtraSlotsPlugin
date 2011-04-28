@@ -8,6 +8,7 @@
   $form = isset($form) ? $sf_data->getRaw('form') : null;
   $popularTags = isset($popularTags) ? $sf_data->getRaw('popularTags') : array();
   $allTags = isset($allTags) ? $sf_data->getRaw('allTags') : array();
+  $id = isset($id) ? $sf_data->getRaw('id') : null;
 ?>
 
-<?php include_partial('aBlogSlot/editView', array('form' => $form, 'popularTags' => $popularTags, 'allTags' => $allTags)) ?>
+<?php include_partial('aBlogSlot/editView', array('form' => $form, 'popularTags' => $popularTags, 'allTags' => $allTags, 'id' => $id)) ?>
