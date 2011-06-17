@@ -41,7 +41,7 @@ class BaseaMapSlotComponents extends aSlotComponents
 		// 2. Is there a slot value set?
 		// 3. Use this default so nothing blows up (Punk Ave Studio)
 
-    $this->options['title'] = $this->getOption('title', ((isset($this->map['title'])) ? $this->map['title'] : ''));
+    $this->options['title'] = $this->getOption('title', ((isset($this->map['title'])) ? $this->map['title'] : false));
     $this->options['address'] = $this->getOption('address', ((isset($this->map['address'])) ? $this->map['address'] : false));
     $this->options['longitude'] = $this->getOption('longitude', ((isset($this->map['longitude'])) ? $this->map['longitude'] : false));
     $this->options['latitude'] = $this->getOption('latitude', ((isset($this->map['latitude'])) ? $this->map['latitude'] : false));

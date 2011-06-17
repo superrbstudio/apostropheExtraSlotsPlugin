@@ -30,7 +30,9 @@
 
 <?php if ($options['address']): ?>
 
-<h3 class="a-map-title"><?php echo ($options['title']) ? $options['title'] : 'Map' ?></h3>
+<?php if ($options['title']): ?>
+	<h3 class="a-map-title"><?php echo $options['title']?></h3>	
+<?php endif ?>
 
 <div class="a-map" id="a-map-<?php echo "$pageid-$name-$permid" ?>" style="width:<?php echo $options['width'] ?>px;height:<?php echo $options['height'] ?>px;">
 	<span class="a-map-address"><?php echo ($options['address']) ? $options['address'] : '' ?></span>
