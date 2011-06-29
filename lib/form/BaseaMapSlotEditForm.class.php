@@ -1,5 +1,5 @@
 <?php
-class aMapSlotEditForm extends BaseForm
+class BaseaMapSlotEditForm extends BaseForm
 {
   // Ensures unique IDs throughout the page
   protected $id;
