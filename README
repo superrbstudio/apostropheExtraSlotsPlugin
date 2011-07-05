@@ -4,8 +4,8 @@ For complete and extensive documentation of Apostrophe please visit
 [trac.apostrophenow.org](http://trac.apostrophenow.org/wiki/ManualOverview). There you'll find a complete manual organized much more conveniently than is possible with a README file.
 
 The Apostrophe Extra Slots Plugin contains several slots that are more specialized or complex than the slots bundled with Apostrophe.
-
-In general, we regard these slots to be somewhat "experimental" and use the Extra Slots plugin as a way to cultivate slot types that may eventually mature to become part of the core set of Apostrophe slots.
+In general, we regard these slots to be somewhat "experimental" and use the Extra Slots plugin as a way to cultivate slot types that 
+may eventually mature to become part of the core set of Apostrophe slots.
 
 
 Installation:
@@ -27,7 +27,7 @@ Installation:
 			- aInsetImageSlot
 			- aMapSlot
 			...
-		
+
 3. Add the slots to app.yml in the slot_types [ /apps/frontend/config/app.yml ] :
 
 		a:
@@ -38,7 +38,7 @@ Installation:
 			  aInsetArea: Inset Area                # apostropheExtraSlotsPlugin Slot
 			  aBlogSlideshow: Blog Slideshow        # apostropheExtraSlotsPlugin Slot
 			  aMap: Map                             # apostropheExtraSlotsPlugin Slot
-			
+
 4. Add the slots to an Area or Singleton Slot in a page template [ /apps/frontend/modules/a/templates/defaultTemplate.php ] :
 
 		<?php a_area('example', array(
@@ -48,13 +48,13 @@ Installation:
 			),
 		  'type_options' => array(
 				'aRichText' => array(
-					'tool' => 'Main', 
-				), 
+					'tool' => 'Main',
+				),
 				'aInsetImage' => array(
 					...
 				),
 				...
-				
-Note: Slot Options for the slots can vary a lot considering the different problems they aim to solve. 
-To get a sense of the slot options specific to the slot you're working with, 
+
+Note: Slot Options for the slots can vary a lot considering the different problems they aim to solve.
+To get a sense of the slot options specific to the slot you're working with,
 look in the plugin's /lib/actions/Base...SlotComponents.class.php file and you will see which options exist.
