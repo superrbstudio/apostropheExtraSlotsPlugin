@@ -1,0 +1,70 @@
+@import '../../../apostrophePlugin/web/css/a-helpers.less';
+
+.a-slot.aInsetImage
+{
+	.a-inset-image 
+	{ 
+		position: relative; 
+		img 
+		{ 
+			display: block; 
+		}
+	}
+	&.topleft
+	{
+		.a-inset-image 
+		{ 
+			float: left; margin: 0 10px 5px 0; 
+		}
+	}
+	&.topright
+	{
+		.a-inset-image 
+		{ 
+			float: right; margin: 0 0 5px 10px; 
+		}
+	}
+	.a-inset-image-title 
+	{ 
+		position: absolute; 
+		bottom: 0; left: 0; right: 0; 
+		margin: 0; padding: 5px; 
+		font-size: 11px; 
+		background: rgba(0,0,0,0.65); 
+		color: #fff; 
+	}
+} 
+
+.a-slot.aInsetArea
+{
+	.a-inset-area-container 
+	{ 
+		position: relative; 
+		padding: 10px; 
+		float: left; 
+		background: rgba(0,0,0,0.125); 
+		@a-border-radius(3px);
+	}
+	&.topleft
+	{
+		.a-inset-area-container 
+		{ 
+			float: left; 
+			margin: 0 10px 5px 0; 
+		}
+	}
+	&.topright 
+	{
+		.a-inset-area-container 
+		{ 
+			float: right; 
+			margin: 0 0 5px 10px; 
+		} 
+	}
+} 
+
+.a-insetimage > .icon { background-image: url(../images/a-icon-inset-image.png); }
+.alt .a-insetimage > .icon, .alt.a-insetimage > .icon { background-image: url(../images/a-icon-alt-inset-image.png); }
+
+.a-insetarea > .icon { background-image: url(../images/a-icon-inset-area.png); }
+.alt .a-insetarea > .icon, .alt.a-insetarea > .icon { background-image: url(../images/a-icon-alt-inset-area.png); }
