@@ -1,3 +1,8 @@
+function aExtraSlotsConstructor()
+{
+	// JS for Extra Slots goes here
+}
+
 function aMapSlotConstructor()
 {
 	// API loaded flag
@@ -84,9 +89,9 @@ function aMapSlotConstructor()
 			$this.loadGoogleMapsAPI();
 			var tryAgain = window.setTimeout($this.createGoogleMap, 1000, options);
 		}
-
 	};
 
 }
 
 window.aMapSlot = new aMapSlotConstructor();
+window.aExtraSlots = new aExtraSlotsConstructor();

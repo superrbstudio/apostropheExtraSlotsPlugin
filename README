@@ -1,0 +1,60 @@
+# Apostrophe Extra Slots Plugin for Apostrophe 1.5
+
+For complete and extensive documentation of Apostrophe please visit
+[trac.apostrophenow.org](http://trac.apostrophenow.org/wiki/ManualOverview). There you'll find a complete manual organized much more conveniently than is possible with a README file.
+
+The Apostrophe Extra Slots Plugin contains several slots that are more specialized or complex than the slots bundled with Apostrophe.
+
+In general, we regard these slots to be somewhat "experimental" and use the Extra Slots plugin as a way to cultivate slot types that may eventually mature to become part of the core set of Apostrophe slots.
+
+
+Installation:
+
+0. Enable the apostropheExtraSlotsPlugin in your project's projectConfiguration Class [ /config/projectConfiguration.class.php ] :
+
+1. The Extra Slots Plugin requires some CSS and Javascript to fully function. Add these assets to your project level view.yml [ /apps/frontend/config/view.yml ] :
+
+		stylesheets:
+		  - /apostropheExtraSlotsPlugin/css/aExtraSlots.less
+		javascripts:
+		  - /apostropheExtraSlotsPlugin/js/aExtraSlots.js
+
+2. Enable the modules for the slots you want to use in your project's settings.yml [ /apps/frontend/config/settings.yml ] :
+
+		enabled_modules:
+			- aBlogSlideshowSlot
+			- aInsetAreaSlot
+			- aInsetImageSlot
+			- aMapSlot
+			...
+		
+3. Add the slots to app.yml in the slot_types [ /apps/frontend/config/app.yml ] :
+
+		a:
+			### Apostrophe Slots
+			slot_types:
+				...
+			  aInsetImage: Inset Image              # apostropheExtraSlotsPlugin Slot
+			  aInsetArea: Inset Area                # apostropheExtraSlotsPlugin Slot
+			  aBlogSlideshow: Blog Slideshow        # apostropheExtraSlotsPlugin Slot
+			  aMap: Map                             # apostropheExtraSlotsPlugin Slot
+			
+4. Add the slots to an Area or Singleton Slot in a page template [ /apps/frontend/modules/a/templates/defaultTemplate.php ] :
+
+		<?php a_area('example', array(
+			'allowed_types' => array(
+				'aRichText',
+				'aInsetImage',
+			),
+		  'type_options' => array(
+				'aRichText' => array(
+					'tool' => 'Main', 
+				), 
+				'aInsetImage' => array(
+					...
+				),
+				...
+				
+Note: Slot Options for the slots can vary a lot considering the different problems they aim to solve. 
+To get a sense of the slot options specific to the slot you're working with, 
+look in the plugin's /lib/actions/Base...SlotComponents.class.php file and you will see which options exist.
