@@ -87,7 +87,9 @@ function aMapSlotConstructor()
 		{
 			apostrophe.log('aMapSlot -- Maps API is NOT loaded');
 			$this.loadGoogleMapsAPI();
-			var tryAgain = window.setTimeout($this.createGoogleMap, 1000, options);
+			var tryAgain = window.setTimeout(function() {
+				$this.createGoogleMap(options);
+			}, 1000);
 		}
 	};
 
