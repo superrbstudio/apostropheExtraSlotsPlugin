@@ -27,7 +27,8 @@ class aWufooFormSlotEditForm extends BaseForm
     $error = false;
     if (preg_match('/new WufooForm/', $values['wufoo_code']))
     {
-      error_log("Matched regex");
+      // Don't redundantly load the JS
+      $values['wufoo_code'] = preg_replace('/\<script src[^\>]+>\s*\<\/script\>/', '', $values['wufoo_code']);
     }
     else
     {
