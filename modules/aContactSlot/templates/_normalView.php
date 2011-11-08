@@ -45,21 +45,21 @@
 
 
 <?php // Slot Markup ?>
-<div id="a-contact-slot-<?php echo $pageid.'-'.$name.'-'.$permid; ?>" class="a-contact-slot">
+<div id="a-contact-<?php echo $pageid.'-'.$name.'-'.$permid; ?>" class="a-contact">
 
 	<?php if ($editable && !$options['description']): ?>
-	  <div class="a-contact-slot-help-text"><?php echo __('Choose an image and edit your contact information.', null, 'apostrophe') ?></div>
+	  <div class="a-contact-help-text"><?php echo __('Choose an image and edit your contact information.', null, 'apostrophe') ?></div>
 	<?php endif ?>
 	
 	<?php if ($item && $embed): ?>
 		<?php // contact-slot image ?>
-	   <div class="a-contact-slot-image">
+	   <div class="a-contact-image">
 	 		<?php echo $embed ?>
 	   </div>
 	<?php endif ?>
 				
 	<?php if ($options['description']): ?>
-		<div class="a-contact-slot-description">
+		<div class="a-contact-description">
 			<?php echo $options['description'] ?>
 		</div> 
 	<?php endif ?>
