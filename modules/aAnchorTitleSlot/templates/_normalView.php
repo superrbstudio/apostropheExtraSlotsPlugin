@@ -16,7 +16,7 @@ $values = isset($values) ? $sf_data->getRaw('values') : null
 <?php if (isset($values['title'])): ?>
 	
 	<?php if ($options['title']): ?>
-		<h3 id="<?php echo $values['anchor'] ?>">
+		<h3 class="a-anchor-title" id="<?php echo $values['anchor'] ?>">
 			<?php if ($editable): ?><span class="aAnchor-icon" title="<?php echo $values['title'] ?>">A</span><?php endif ?>
 			<?php echo htmlspecialchars($values['title']) ?>
 		</h3>

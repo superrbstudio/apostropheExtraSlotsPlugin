@@ -3,7 +3,7 @@
 <ul class="a-nav a-nav-<?php echo $name ?> inline-anchors clearfix" id="a-anchored-nav-<?php echo $name ?>">
 
   <?php $n=0; foreach($navigation as $item): ?>
-    <li class="<?php if($n == 0) echo ' first';
+    <li class="a-nav-item <?php if($n == 0) echo ' first';
         if($n == 1) echo ' second';
         if($n == count($navigation) - 2) echo ' next-last';
         if($n == count($navigation)-1) echo ' last'
@@ -14,3 +14,5 @@
   <?php $n++; endforeach ?>
   
 </ul>
+
+<?php a_js_call('aExtraSlots.setupAAnchorNavigation(?)', array('navId' => 'a-anchored-nav-'.$name)) ?>

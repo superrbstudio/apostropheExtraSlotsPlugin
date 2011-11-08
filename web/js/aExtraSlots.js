@@ -1,6 +1,43 @@
 function aExtraSlotsConstructor()
 {
 	// JS for Extra Slots goes here
+
+	this.setupAAnchorNavigation = function(options)
+	{
+		apostrophe.log('aExtraSlots.setupAAnchorNavigation');
+		// Listen for hash changes and update navigation component class names
+
+		var win = $(window),
+				nav = $('#' + options['navId']),
+				anchors = nav.find('.a-nav-item a');
+				hash = window.location.hash;
+
+		if (nav.length)
+		{
+			// On load, check for the hash
+			// If it's not empty, look to apply .a-current-page to an anchor
+			if (hash !== '') 
+			{
+				currentAnchor = nav.find('a[href="' + hash + '"]');
+				if (currentAnchor && currentAnchor.length) 
+				{
+					apostrophe.log(currentAnchor);
+					currentAnchor.closest('.a-nav-item').addClass('a-current-page');					
+				}
+			}	
+			// Click even for nav items updates .a-current-page to last clicked item
+			anchors.unbind('click.setupAAnchorNavigation').bind('click.setupAAnchorNavigation', function(event){
+				var anchor = $(this);
+				nav.find('.a-nav-item').removeClass('a-current-page');
+				anchor.parent().addClass('a-current-page');
+			});
+		}
+		else
+		{
+			throw "aExtraSlots.setupAAnchorNavigation -- No navigation found!";
+		}	
+	};
+	
 }
 
 function aMapSlotConstructor()
