@@ -29,7 +29,7 @@
 			)) ?>
   	<li class="a-controls-item choose-image">
   	  <?php include_partial('aImageSlot/choose', array(
-				'action' => 'contactSlot/image', 
+				'action' => 'aContactSlot/image', 
 				'buttonLabel' => __('Choose image', null, 'apostrophe'), 
 				'label' => __('Select an Image', null, 'apostrophe'), 
 				'class' => 'a-btn icon a-media', 
