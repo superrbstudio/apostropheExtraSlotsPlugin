@@ -74,24 +74,37 @@
 {
 	margin-bottom:10px; 
 	
-	.a-contact 
-	{ 
-		float:left;
-		clear:both;
-		width:100%; 
-		
-		.a-contact-image 
+	.a-slot-content
+	{
+		.a-contact 
 		{ 
 			float:left;
-			width:120px;
-			margin-right:20px; 
-		}
-		
-		.a-contact-description 
-		{ 
-			float:left;
-			width:340px; 
-		}
+			clear:both;
+			width:100%; 
+
+			.a-contact-image 
+			{ 
+				float:left;
+				width:120px;
+				margin-right:20px; 
+			}
+
+			.a-contact-description 
+			{ 
+				float:left;
+				width:340px; 
+				
+				p
+				{
+					margin-bottom: 10px;
+					
+					&:last-child
+					{
+						margin-bottom: 0;
+					}
+				}
+			}
+		}		
 	}
 }
 
