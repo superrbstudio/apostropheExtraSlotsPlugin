@@ -12,7 +12,7 @@ class aWufooFormSlotEditForm extends BaseForm
   {
     $this->setWidgets(array('wufoo_code' => new sfWidgetFormTextarea()));
     $this->setValidators(array('wufoo_code' => new sfValidatorString(array('required' => false, 'max_length' => 100))));
-    $this->widgetSchema->setHelp('wufoo_code', 'Hint: generate your form on <a href="http://wufoo.com/">wufoo.com</a>, then click "Code," then "Embed Form Code." Copy and paste the "Javascript Version" of the code here.');
+    $this->widgetSchema->setHelp('wufoo_code', 'Hint: generate your form on <a href="http://wufoo.com/" target="application">wufoo.com</a>, then click "Code," then "Embed Form Code." Copy and paste the "Javascript Version" of the code here.');
     $this->setValidators(array('wufoo_code' => new sfValidatorString(array('required' => true, 'max_length' => 5000))));
     
     $this->validatorSchema->setPostValidator(new sfValidatorCallback(array('callback' => array($this, 'validateWufooCode'))));
