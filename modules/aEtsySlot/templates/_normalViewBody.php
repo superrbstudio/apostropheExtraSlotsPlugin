@@ -6,20 +6,7 @@
 <?php $normalViewSelector = "#a-slot-content-container-$pageid-$name-$permid" ?>
 <?php if (isset($values['etsy_code'])): ?>
   <?php if ($sf_request->isXmlHttpRequest()): ?>
-    <script type="text/javascript" charset="utf-8">
-      var apostropheSaveDocumentWrite = document.write;
-      var apostropheDocumentWriteBuffer = '';
-      document.write = function(markup) {
-        apostropheDocumentWriteBuffer += markup;
-      };
-      $(function() {
-        jQuery.getScript('http://www.etsy.com/assets/js/etsy_mini_shop.js', function() {
-          $('<?php echo $normalViewSelector ?>').append(<?php echo json_encode($values['etsy_code']) ?>);
-          $('<?php echo $normalViewSelector ?>').append(apostropheDocumentWriteBuffer);
-          document.write = apostropheSaveDocumentWrite;
-        });
-      });
-    </script>
+    <?php echo aHtml::ajaxifyEmbedCode($values['etsy_code'], $normalViewSelector) ?>
   <?php else: ?>
     <?php echo $values['etsy_code'] ?>
   <?php endif ?>
