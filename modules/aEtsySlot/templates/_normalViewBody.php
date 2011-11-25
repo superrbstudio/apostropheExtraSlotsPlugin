@@ -6,7 +6,9 @@
 <?php $normalViewSelector = "#a-slot-content-container-$pageid-$name-$permid" ?>
 <?php if (isset($values['etsy_code'])): ?>
   <?php if ($sf_request->isXmlHttpRequest()): ?>
-    <?php echo aHtml::ajaxifyEmbedCode($values['etsy_code'], $normalViewSelector) ?>
+    <script type="text/javascript" charset="utf-8">
+      <?php echo aHtml::ajaxifyEmbedCode($values['etsy_code'], $normalViewSelector) ?>
+    </script>
   <?php else: ?>
     <?php echo $values['etsy_code'] ?>
   <?php endif ?>

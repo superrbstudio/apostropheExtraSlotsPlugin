@@ -6,21 +6,13 @@
 <?php $normalViewSelector = "#a-slot-content-container-$pageid-$name-$permid" ?>
 <?php if (isset($values['wufoo_code'])): ?>
   <?php if ($sf_request->isXmlHttpRequest()): ?>
+    <?php $script = json_encode($sf_request->isSecure() ? 'https://secure.wufoo.com/scripts/embed/form.js' : 'http://wufoo.com/scripts/embed/form.js') ?>
     <script type="text/javascript" charset="utf-8">
-      var apostropheSaveDocumentWrite = document.write;
-      var apostropheDocumentWriteBuffer = '';
-      document.write = function(markup) {
-        apostropheDocumentWriteBuffer += markup;
-      };
-    </script>
-  <?php endif ?>
-  <?php echo $values['wufoo_code'] ?>
-  <?php if ($sf_request->isXmlHttpRequest()): ?>
-    <script type="text/javascript" charset="utf-8">
-      $(function() {
-        $('<?php echo $normalViewSelector ?>').append(apostropheDocumentWriteBuffer);
+      $.getScript(<?php echo $script ?>, function() {
+        <?php echo aHtml::ajaxifyEmbedCode($values['wufoo_code'], $normalViewSelector, array('ignoreDynamicScriptSrc' => true)) ?>
       });
-      document.write = apostropheSaveDocumentWrite;
     </script>
+  <?php else: ?>
+    <?php echo $values['wufoo_code'] ?>
   <?php endif ?>
 <?php endif ?>
