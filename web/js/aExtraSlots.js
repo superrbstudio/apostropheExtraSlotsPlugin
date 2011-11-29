@@ -38,6 +38,28 @@ function aExtraSlotsConstructor()
 		}	
 	};
 	
+	this.setupSharedSlideshowSlot = function(options)
+	{
+		var form = $('#' + options.id);
+		form.find('.a-js-label-or-reuse').change(function() {
+			update();
+		});
+		update();
+		function update()
+		{
+			var val = form.find('.a-js-label-or-reuse:checked').val();
+			if (val === 'label')
+			{
+				form.find('.a-js-label').removeAttr('disabled');
+				form.find('.a-js-reuse').attr('disabled', 'disabled');
+			}
+			else
+			{
+				form.find('.a-js-label').attr('disabled', 'disabled');
+				form.find('.a-js-reuse').removeAttr('disabled');
+			}
+		}
+	}
 }
 
 function aMapSlotConstructor()

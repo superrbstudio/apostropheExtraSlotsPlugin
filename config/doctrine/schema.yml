@@ -238,3 +238,60 @@ aEtsySlot:
     type: column_aggregation
     keyField: type
     keyValue: 'aEtsy'
+
+aReusableSlideshowSlot:
+  # Doctrine doesn't produce useful forms with column aggregation inheritance anyway,
+  # and slots often use serialization into the value column... the Doctrine forms are not
+  # of much use here and they clutter the project
+  options:
+    symfony:
+      form:   false
+      filter: false
+
+  # columns:
+  #
+  # You can add columns here. However, if you do not need foreign key relationships it is
+  # often easier to store your data in the 'value' column via serialize(). If you do add columns, 
+  # their names must be unique across all slots in your project, so use a unique prefix 
+  # for your company.
+    
+  # This is how we are able to retrieve slots of various types with a single query from
+  # a single table
+  inheritance:
+    extends: aSlot
+    type: column_aggregation
+    keyField: type
+    keyValue: 'aReusableSlideshow'
+
+# This is a reference to a slot somewhere on the site that has declared
+# itself available for reuse. For reasonable efficiency there must be
+# a master table of these, giving the label (a descriptive name entered
+# by the original user to help others reuse the content intelligently),
+# the type of the slot (to filter effectively before the join), and
+# the page id, area name and permid (which can be used to locate the 
+# appropriate content slot - note that you'll want the latest version of
+# that slot, fetched by the usual means). Take special care not to panic
+# if the slot does not exist anymore in the current version of its page.
+# Currently in use in the aReusableSlideshowSlot.
+
+aReusableSlot:
+  columns:
+    label: 
+      type: string(100)
+      notnull: true
+    type: 
+      type: string(100)
+      notnull: true
+    page_id:
+      type: integer
+      notnull: true
+    area_name:
+      type: string
+      notnull: true
+    permid:
+      type: integer
+      notnull: true
+  options:
+    symfony:
+      form:   false
+      filter: false
