@@ -36,8 +36,14 @@ class aReusableSlideshowSlotActions extends BaseaSlideshowSlotActions
           }
           $aReusableSlot->label = $this->form->getValue('label');
           $aReusableSlot->save();
-          // No save of this slot is needed, so just refresh the slot
-          return $this->editAjax(false);
+          
+          // Store the name redundantly in the slot itself since we've been asked
+          // to present it to the user in some situations and we should do that
+          // efficiently
+          $values = $this->slot->getArrayValue();
+          $values['label'] = $this->form->getValue('label');
+          $this->slot->setArrayValue($values);
+          return $this->editSave();
         }
         else
         {

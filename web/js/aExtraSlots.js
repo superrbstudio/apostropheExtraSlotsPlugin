@@ -38,7 +38,7 @@ function aExtraSlotsConstructor()
 		}	
 	};
 	
-	this.setupSharedSlideshowSlot = function(options)
+	this.setupReusableSlideshowSlot = function(options)
 	{
 		var form = $('#' + options.id);
 		form.find('.a-js-label-or-reuse').change(function() {

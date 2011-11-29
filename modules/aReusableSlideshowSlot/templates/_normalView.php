@@ -48,14 +48,21 @@
          'class' => 'a-btn icon a-media a-inject-actual-url')) ?>
      <?php aRouteTools::popTargetEnginePage('aMedia') ?>
    </li>
+   <?php // I'm using the 'edit' form to manage reuse settings, thus alternate label. -Tom ?>
    <?php include_partial('a/simpleEditWithVariants', array('controlsSlot' => false, 'name' => $name, 'permid' => $permid, 'pageid' => $pageid, 'slot' => $slot, 'label' => a_get_option($options, 'reuseLabel', a_('Reuse')))) ?>
  <?php end_slot() ?>
 
- <?php // I'm using the 'edit' form to manage reuse settings, thus alternate label. -Tom ?>
 <?php endif ?>
 
 <?php if (count($items)): ?>
 	<?php include_component('aSlideshowSlot', $options['slideshowTemplate'], array('items' => $items, 'id' => $id, 'options' => $options)) ?>
 <?php else: ?>
 	<?php include_partial('aImageSlot/placeholder', array('placeholderText' => a_("Choose Photos"), 'options' => $options)) ?>
+<?php endif ?>
+
+<?php // The entire slideshow has a label and options specified that we should render it. ?>
+<?php // This is the same label that is displayed when selecting a slideshow to reuse. ?>
+<?php // Using it this way as well helps promote reuse ?>
+<?php if ($label): ?>
+  <h4><?php echo $label ?></h4>
 <?php endif ?>

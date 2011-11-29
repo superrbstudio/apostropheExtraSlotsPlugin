@@ -25,4 +25,4 @@
   <?php echo $form['reuse']->renderRow(array('class' => 'a-js-reuse')) ?>
 </div>
 
-<?php a_js_call('aExtraSlots.setupSharedSlideshowSlot(?)', array('id' => 'a-slot-form-' . $id)) ?>
+<?php a_js_call('aExtraSlots.setupReusableSlideshowSlot(?)', array('id' => 'a-slot-form-' . $id)) ?>

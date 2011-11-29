@@ -15,5 +15,18 @@ class aReusableSlideshowSlotComponents extends BaseaSlideshowSlotComponents
     }
   }
   
+  public function executeNormalView()
+  {
+    parent::executeNormalView();
+    if (isset($this->options['slideshowLabel']))
+    {
+      $values = $this->slot->getArrayValue();
+      $this->label = isset($values['label']) ? $values['label'] : null;
+    }
+    else
+    {
+      $this->label = null;
+    }
+  }
   // The smarts you're looking for are probably in getOrderedMediaItems in the model class
 }
