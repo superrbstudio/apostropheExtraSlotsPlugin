@@ -21,7 +21,15 @@ class aReusableSlideshowSlotComponents extends BaseaSlideshowSlotComponents
     if (isset($this->options['slideshowLabel']))
     {
       $values = $this->slot->getArrayValue();
-      $this->label = isset($values['label']) ? $values['label'] : null;
+      if (isset($values['reuse']['id']))
+      {
+        $aReusableSlot = Doctrine::getTable('aReusableSlot')->find($values['reuse']['id']);
+        $this->label = $aReusableSlot->label;
+      }
+      else
+      {
+        $this->label = isset($values['label']) ? $values['label'] : null;
+      }
     }
     else
     {

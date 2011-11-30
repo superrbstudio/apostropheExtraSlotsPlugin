@@ -21,4 +21,28 @@ class PluginaReusableSlotTable extends Doctrine_Table
   {
     return $this->createQuery('r')->where('r.page_id = ? AND r.area_name = ? AND r.permid = ?', array($page_id, $area_name, $permid))->fetchOne();
   }
+  
+  /**
+   * Accepts an aReusableSlot or an array hydrated with the same columns. Returns the
+   * actual Apostrophe slot being reused, or null if its page no longer exists or
+   * it does not exist in the current version of its area on the page
+   */
+  static public function getReusedSlot($reusableSlot)
+  {
+    $q = aPageTable::queryWithSlot($reusableSlot['area_name']);
+    $q->andWhere('p.id = ?', $reusableSlot['page_id']);
+    $q->andWhere('avs.permid = ?', $reusableSlot['permid']);
+    $page = $q->fetchOne();
+    if (!$page)
+    {
+      return null;
+    }
+    $slots = $page->getSlotsByAreaName($reusableSlot['area_name']);
+    if (!isset($slots[$reusableSlot['permid']]))
+    {
+      return null;
+    }
+    $slot = $slots[$reusableSlot['permid']];
+    return $slot;
+  }
 }

@@ -32,25 +32,15 @@ abstract class PluginaReusableSlideshowSlot extends BaseaReusableSlideshowSlot
     $values = $this->getArrayValue();
     if (isset($values['reuse']))
     {
-      // This isn't terrible but it could be more efficient if I used
-      // array hydration. The trouble with that is that I have to walk the
-      // results of that join which would be a lot easier if I refactored
-      // some of the code for that purpose that lives in PluginaPageTable
-      $q = aPageTable::queryWithSlot($values['reuse']['area_name']);
-      $q->andWhere('p.id = ?', $values['reuse']['page_id']);
-      $q->andWhere('avs.permid = ?', $values['reuse']['permid']);
-      $page = $q->fetchOne();
-      if (!$page)
+      $slot = aReusableSlotTable::getReusedSlot($values['reuse']);
+      if ($slot)
+      {
+        return $slot->getOrderedMediaItems();
+      }
+      else
       {
         return array();
       }
-      $slots = $page->getSlotsByAreaName($values['reuse']['area_name']);
-      if (!isset($slots[$values['reuse']['permid']]))
-      {
-        return array();
-      }
-      $slot = $slots[$values['reuse']['permid']];
-      return $slot->getOrderedMediaItems();
     }
     return parent::getOrderedMediaItems();
   }

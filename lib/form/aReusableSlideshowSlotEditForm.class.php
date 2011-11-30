@@ -55,6 +55,18 @@ class aReusableSlideshowSlotEditForm extends BaseForm
     // See validateCallback
     $this->setValidator('label', new sfValidatorPass(array('required' => false)));
     $reusableSlots = Doctrine::getTable('aReusableSlot')->createQuery('r')->where('r.type = ? AND r.id <> ?', array($this->slot->type, $this->aReusableSlot ? $this->aReusableSlot->id : 0))->orderBy('r.label')->fetchArray();
+    
+    // Filter to make sure only slots that currently exist remain on the list
+    $filteredSlots = array();
+    foreach ($reusableSlots as $reusableSlot)
+    {
+      if (aReusableSlotTable::getReusedSlot($reusableSlot))
+      {
+        $filteredSlots[] = $reusableSlot;
+      }
+    }
+    $reusableSlots = $filteredSlots;
+    
     $this->reuseChoices = array();
     foreach ($reusableSlots as $reusableSlot)
     {
