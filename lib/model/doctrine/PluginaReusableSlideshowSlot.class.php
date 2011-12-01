@@ -28,7 +28,6 @@ abstract class PluginaReusableSlideshowSlot extends BaseaReusableSlideshowSlot
    */
   public function getOrderedMediaItems()
   {
-    error_log("getOrderedMediaItems");
     $values = $this->getArrayValue();
     if (isset($values['reuse']))
     {
