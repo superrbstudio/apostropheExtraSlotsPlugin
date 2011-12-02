@@ -43,6 +43,13 @@ class PluginaReusableSlotTable extends Doctrine_Table
       return null;
     }
     $slot = $slots[$reusableSlot['permid']];
+    $values = $slot->getArrayValue();
+    if (isset($values['reuse']['id']))
+    {
+      // Reference to yet another slot. We don't allow this
+      // (could lead to infinite recursion, it's certainly inefficient)
+      return null;
+    }
     return $slot;
   }
 }
