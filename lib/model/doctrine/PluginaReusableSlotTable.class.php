@@ -52,4 +52,18 @@ class PluginaReusableSlotTable extends Doctrine_Table
     }
     return $slot;
   }
+  
+  /**
+   * Remove any reusable slot with the given label that does not actually point to
+   * a valid reused slot anymore. We do this when we really have to: just before checking 
+   * a newly saved reusable slot's label for uniqueness
+   */
+  static public function purgeOrphanByLabel($label)
+  {
+    $slot = Doctrine::getTable('aReusableSlot')->findOneByLabel($label);
+    if (!$slot->getReusedSlot())
+    {
+      $slot->delete();
+    }
+  }  
 }

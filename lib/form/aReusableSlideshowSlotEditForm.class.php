@@ -101,6 +101,7 @@ class aReusableSlideshowSlotEditForm extends BaseForm
       {
         throw new sfValidatorErrorSchema($validator, array('label' => new sfValidatorError($validator, 'max_length', array('max_length' => 100))));
       }
+      aReusableSlotTable::purgeOrphanByLabel($values['label']);
       $existing = Doctrine::getTable('aReusableSlot')->createQuery('r')->where('r.label = ? AND r.type = ?', array($values['label'], $this->slot->type))->fetchOne();
       if ($existing && ((!$this->aReusableSlot) || ($existing->id !== $this->aReusableSlot->id)))
       {

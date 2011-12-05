@@ -12,4 +12,8 @@
  */
 abstract class PluginaReusableSlot extends BaseaReusableSlot
 {
+  public function getReusedSlot()
+  {
+    return $this->getTable()->getReusedSlot($this);
+  }
 }
