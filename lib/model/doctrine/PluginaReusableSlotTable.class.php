@@ -61,9 +61,12 @@ class PluginaReusableSlotTable extends Doctrine_Table
   static public function purgeOrphanByLabel($label)
   {
     $slot = Doctrine::getTable('aReusableSlot')->findOneByLabel($label);
-    if (!$slot->getReusedSlot())
+    if ($slot)
     {
-      $slot->delete();
+      if (!$slot->getReusedSlot())
+      {
+        $slot->delete();
+      }
     }
   }  
 }
