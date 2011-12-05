@@ -54,7 +54,8 @@ class aReusableSlideshowSlotEditForm extends BaseForm
     $this->setWidget('label', new sfWidgetFormInputText());
     // See validateCallback
     $this->setValidator('label', new sfValidatorPass(array('required' => false)));
-    $reusableSlots = Doctrine::getTable('aReusableSlot')->createQuery('r')->where('r.type = ? AND r.id <> ?', array($this->slot->type, $this->aReusableSlot ? $this->aReusableSlot->id : 0))->orderBy('r.label')->fetchArray();
+    $page = aTools::getCurrentPage();
+    $reusableSlots = Doctrine::getTable('aReusableSlot')->createQuery('r')->where('r.type = ? AND r.id <> ? AND r.page_id <> ?', array($this->slot->type, $this->aReusableSlot ? $this->aReusableSlot->id : 0, $page ? $page->id : 0))->orderBy('r.label')->fetchArray();
     
     // Filter to make sure only slots that currently exist remain on the list
     $filteredSlots = array();
@@ -101,8 +102,9 @@ class aReusableSlideshowSlotEditForm extends BaseForm
       {
         throw new sfValidatorErrorSchema($validator, array('label' => new sfValidatorError($validator, 'max_length', array('max_length' => 100))));
       }
-      aReusableSlotTable::purgeOrphanByLabel($values['label']);
-      $existing = Doctrine::getTable('aReusableSlot')->createQuery('r')->where('r.label = ? AND r.type = ?', array($values['label'], $this->slot->type))->fetchOne();
+      $page = aTools::getCurrentPage();
+      aReusableSlotTable::purgeOrphanByLabel($values['label'], array('exclude_page_id' => $page ? $page->id : null));
+      $existing = Doctrine::getTable('aReusableSlot')->createQuery('r')->where('r.label = ? AND r.type = ? AND r.page_id <> ?', array($values['label'], $this->slot->type, $page ? $page->id : 0))->fetchOne();
       if ($existing && ((!$this->aReusableSlot) || ($existing->id !== $this->aReusableSlot->id)))
       {
         throw new sfValidatorErrorSchema($validator, array('label' => new sfValidatorError($validator, 'unique')));

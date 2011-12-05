@@ -1,6 +1,14 @@
 <?php
 class aReusableSlideshowSlotActions extends BaseaSlideshowSlotActions
 {
+  // After media ids are set (even if to an empty slideshow) we don't want
+  // to reuse some other slideshow anymore
+  protected function afterSetMediaIds()
+  {
+    $value = $this->slot->getArrayValue();
+    unset($value['reuse']);
+    $this->slot->setArrayValue($value);
+  }
 
   /**
    * DOCUMENT ME

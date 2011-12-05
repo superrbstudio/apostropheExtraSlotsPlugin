@@ -56,11 +56,19 @@ class PluginaReusableSlotTable extends Doctrine_Table
   /**
    * Remove any reusable slot with the given label that does not actually point to
    * a valid reused slot anymore. We do this when we really have to: just before checking 
-   * a newly saved reusable slot's label for uniqueness
+   * a newly saved reusable slot's label for uniqueness. If $options['exclude_page_id'] is set
+   * then reusable slots referring to reused slots on that page are not considered. This is
+   * sometimes necessary to avoid accidentally rehydrating the current page, causing
+   * rendering problems
    */
-  static public function purgeOrphanByLabel($label)
+  static public function purgeOrphanByLabel($label, $options = array())
   {
-    $slot = Doctrine::getTable('aReusableSlot')->findOneByLabel($label);
+    $q = Doctrine::getTable('aReusableSlot')->createQuery('r')->where('r.label = ?', $label);
+    if (isset($options['exclude_page_id']))
+    {
+      $q->andWhere('r.page_id <> ?', $options['exclude_page_id']);
+    }
+    $slot = $q->fetchOne();
     if ($slot)
     {
       if (!$slot->getReusedSlot())
