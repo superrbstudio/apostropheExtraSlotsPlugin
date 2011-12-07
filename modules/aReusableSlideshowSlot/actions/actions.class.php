@@ -49,6 +49,8 @@ class aReusableSlideshowSlotActions extends BaseaSlideshowSlotActions
           // to present it to the user in some situations and we should do that
           // efficiently
           $values = $this->slot->getArrayValue();
+          // Implies we're not reusing something else anymore
+          unset($values['reuse']);
           $values['label'] = $this->form->getValue('label');
           $this->slot->setArrayValue($values);
           return $this->editSave();
