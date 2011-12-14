@@ -24,7 +24,15 @@ class aReusableSlideshowSlotComponents extends BaseaSlideshowSlotComponents
       if (isset($values['reuse']['id']))
       {
         $aReusableSlot = Doctrine::getTable('aReusableSlot')->find($values['reuse']['id']);
-        $this->label = $aReusableSlot->label;
+        if (!$aReusableSlot)
+        {
+          error_log("Offending id is " . $values['reuse']['id']);
+          $this->label = 'Error';
+        }
+        else
+        {
+          $this->label = $aReusableSlot->label;
+        }
       }
       else
       {
