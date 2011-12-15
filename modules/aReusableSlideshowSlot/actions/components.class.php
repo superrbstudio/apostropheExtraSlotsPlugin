@@ -18,9 +18,9 @@ class aReusableSlideshowSlotComponents extends BaseaSlideshowSlotComponents
   public function executeNormalView()
   {
     parent::executeNormalView();
+    $values = $this->slot->getArrayValue();
     if (isset($this->options['slideshowLabel']))
     {
-      $values = $this->slot->getArrayValue();
       if (isset($values['reuse']['id']))
       {
         $aReusableSlot = Doctrine::getTable('aReusableSlot')->find($values['reuse']['id']);
@@ -43,6 +43,7 @@ class aReusableSlideshowSlotComponents extends BaseaSlideshowSlotComponents
     {
       $this->label = null;
     }
+    $this->reusing = isset($values['reuse']);
   }
   // The smarts you're looking for are probably in getOrderedMediaItems in the model class
 }
