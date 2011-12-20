@@ -54,9 +54,11 @@ class aReusableSlideshowAdminActions extends sfActions
         }
       }
     }
-    usort($this->reusables, function($a, $b) {
-      return strcmp($a['label'], $b['label']);
-    });
+    usort($this->reusables, array($this, 'compareSlideshowInfos'));
+  }
+
+  public function compareSlideshowInfos($a, $b) {
+    return strcmp($a['label'], $b['label']);
   }
   
   public function executeEdit(sfWebRequest $request)
