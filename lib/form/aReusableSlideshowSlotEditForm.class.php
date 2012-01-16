@@ -54,6 +54,11 @@ class aReusableSlideshowSlotEditForm extends BaseForm
     $this->setWidget('label', new sfWidgetFormInputText());
     // See validateCallback
     $this->setValidator('label', new sfValidatorPass(array('required' => false)));
+    
+    // The rest of the options passed become attributes of the widget
+    $this->setWidget('blurb', new aWidgetFormRichTextarea());
+    $this->setValidator('blurb', new sfValidatorHtml(array('required' => false)));
+    
     $page = aTools::getCurrentPage();
     $reusableSlots = Doctrine::getTable('aReusableSlot')->createQuery('r')->where('r.type = ? AND r.id <> ? AND r.page_id <> ?', array($this->slot->type, $this->aReusableSlot ? $this->aReusableSlot->id : 0, $page ? $page->id : 0))->orderBy('r.label')->fetchArray();
     
@@ -78,8 +83,11 @@ class aReusableSlideshowSlotEditForm extends BaseForm
     
     $this->validatorSchema->setPostValidator(new sfValidatorCallback(array('callback' => array($this, 'validateCallback'))));
     
-    // Ensures unique IDs throughout the page. Hyphen between slot and form to please our CSS
-    $this->widgetSchema->setNameFormat('slot-form-' . $this->id . '[%s]');
+    // There are problems with AJAX plus FCK plus Symfony forms. FCK insists on making the name and ID
+    // the same and brackets are not valid in IDs which can lead to problems in strict settings
+    // like AJAX in IE. Work around this by not attempting to use brackets here
+    $this->widgetSchema->setNameFormat('slot-form-' . $this->id . '-%s');
+ 
     
     // You don't have to use our form formatter, but it makes things nice
     $this->widgetSchema->setFormFormatterName('aAdmin');

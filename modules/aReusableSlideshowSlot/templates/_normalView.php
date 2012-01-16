@@ -10,6 +10,7 @@
   $permid = isset($permid) ? $sf_data->getRaw('permid') : null;
   $slot = isset($slot) ? $sf_data->getRaw('slot') : null;
   $slug = isset($slug) ? $sf_data->getRaw('slug') : null;
+  $blurb = isset($blurb) ? $sf_data->getRaw('blurb') : null;
 ?>
 <?php use_helper('a') ?>
 
@@ -63,6 +64,9 @@
 <?php // The entire slideshow has a label and options specified that we should render it. ?>
 <?php // This is the same label that is displayed when selecting a slideshow to reuse. ?>
 <?php // Using it this way as well helps promote reuse ?>
-<?php if ($label): ?>
+<?php if (strlen($label)): ?>
   <h4><?php echo $label ?></h4>
+<?php endif ?>
+<?php if (strlen($blurb)): ?>
+  <div class="a-slideshow-blurb"><?php echo $blurb ?></div>
 <?php endif ?>

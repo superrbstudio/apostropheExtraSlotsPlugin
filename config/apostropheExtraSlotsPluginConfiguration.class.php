@@ -26,5 +26,9 @@ class apostropheExtraSlotsPluginConfiguration extends sfPluginConfiguration
     {
       $migrate->sql(array('CREATE TABLE a_reusable_slot (id BIGINT AUTO_INCREMENT, label VARCHAR(100) NOT NULL, type VARCHAR(100) NOT NULL, page_id BIGINT NOT NULL, area_name TEXT NOT NULL, permid BIGINT NOT NULL, PRIMARY KEY(id)) ENGINE = INNODB DEFAULT CHARSET=utf8;'));
     }
+    if (!$migrate->columnExists('a_reusable_slot', 'blurb'))
+    {
+      $migrate->sql(array('ALTER TABLE a_reusable_slot ADD COLUMN blurb LONGTEXT'));
+    }
   }
 }

@@ -10,15 +10,19 @@
 <?php $formName = 'slot-form-' . $id ?>
 
 <div class="a-form-row a-label-or-reuse-row <?php echo $formName ?>_label_or_reuse">
-  <input type="radio" class="a-label-or-reuse a-js-label-or-reuse" name="<?php echo $formName ?>[label_or_reuse]" value="label" <?php echo $isLabel ?>/> Label for Reuse
+  <input type="radio" class="a-label-or-reuse a-js-label-or-reuse" name="<?php echo $formName ?>-label_or_reuse" value="label" <?php echo $isLabel ?>/> Label for Reuse
 </div>
 
 <div class="a-form-indent"> 
   <?php echo $form['label']->renderRow(array('class' => 'a-js-label')) ?>
 </div>
 
+<div class="a-form-indent"> 
+  <?php echo $form['blurb']->renderRow(array('class' => 'a-js-label')) ?>
+</div>
+
 <div class="a-form-row a-reuse-section <?php echo $formName ?>_label_or_reuse">
-  <input type="radio" class="a-label-or-reuse a-js-label-or-reuse" name="<?php echo $formName ?>[label_or_reuse]" value="reuse" <?php echo $isReuse ?>/> Reuse Another Slideshow
+  <input type="radio" class="a-label-or-reuse a-js-label-or-reuse" name="<?php echo $formName ?>-label_or_reuse" value="reuse" <?php echo $isReuse ?>/> Reuse Another Slideshow
 </div>
 
 <div class="a-form-indent"> 

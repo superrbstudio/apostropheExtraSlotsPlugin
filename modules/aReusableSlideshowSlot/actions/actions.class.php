@@ -25,7 +25,23 @@ class aReusableSlideshowSlotActions extends BaseaSlideshowSlotActions
     
     $aReusableSlot = Doctrine::getTable('aReusableSlot')->findOneBySlot($this->pageid, $this->name, $this->permid);
     
-    $value = $this->getRequestParameter('slot-form-' . $this->id);
+    // Work around FCK's incompatibility with AJAX and bracketed field names
+    // (it insists on making the ID bracketed too which won't work for AJAX)
+    
+    // Don't forget, there's a CSRF field out there too. We need to grep through
+    // the submitted fields and get all of the relevant ones, reinventing what
+    // PHP's bracket syntax would do for us if FCK were compatible with it
+    
+    $values = $request->getParameterHolder()->getAll();
+    $value = array();
+    foreach ($values as $k => $v)
+    {
+      if (preg_match('/^slot-form-' . $this->id . '-(.*)$/', $k, $matches))
+      {
+        $value[$matches[1]] = $v;
+      }
+    }
+    
     if ($value)
     {
       $this->form = new aReusableSlideshowSlotEditForm($this->id, $aReusableSlot, $this->slot);
@@ -43,6 +59,7 @@ class aReusableSlideshowSlotActions extends BaseaSlideshowSlotActions
             $aReusableSlot->type = $this->slot->type;
           }
           $aReusableSlot->label = $this->form->getValue('label');
+          $aReusableSlot->blurb = $this->form->getValue('blurb');
           $aReusableSlot->save();
           
           // Store the name redundantly in the slot itself since we've been asked
@@ -52,6 +69,7 @@ class aReusableSlideshowSlotActions extends BaseaSlideshowSlotActions
           // Implies we're not reusing something else anymore
           unset($values['reuse']);
           $values['label'] = $this->form->getValue('label');
+          $values['blurb'] = $this->form->getValue('blurb');
           $this->slot->setArrayValue($values);
           return $this->editSave();
         }

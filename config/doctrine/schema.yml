@@ -279,6 +279,8 @@ aReusableSlot:
     label: 
       type: string(100)
       notnull: true
+    blurb:
+      type: clob
     type: 
       type: string(100)
       notnull: true

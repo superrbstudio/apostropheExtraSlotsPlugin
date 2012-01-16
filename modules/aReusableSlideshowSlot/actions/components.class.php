@@ -19,7 +19,9 @@ class aReusableSlideshowSlotComponents extends BaseaSlideshowSlotComponents
   {
     parent::executeNormalView();
     $values = $this->slot->getArrayValue();
-    if (isset($this->options['slideshowLabel']))
+    $labelActive = isset($this->options['slideshowLabel']) && $this->options['slideshowLabel'];
+    $blurbActive = isset($this->options['slideshowBlurb']) && $this->options['slideshowBlurb'];
+    if ($labelActive || $blurbActive)
     {
       if (isset($values['reuse']['id']))
       {
@@ -28,21 +30,29 @@ class aReusableSlideshowSlotComponents extends BaseaSlideshowSlotComponents
         {
           error_log("Offending id is " . $values['reuse']['id']);
           $this->label = 'Error';
+          $this->blurb = 'Error';
         }
         else
         {
           $this->label = $aReusableSlot->label;
+          $this->blurb = $aReusableSlot->blurb;
         }
       }
       else
       {
         $this->label = isset($values['label']) ? $values['label'] : null;
+        $this->blurb = isset($values['blurb']) ? $values['blurb'] : null;
       }
     }
-    else
+    if (!$labelActive)
     {
       $this->label = null;
     }
+    if (!$blurbActive)
+    {
+      $this->blurb = null;
+    }
+    
     $this->reusing = isset($values['reuse']);
   }
   // The smarts you're looking for are probably in getOrderedMediaItems in the model class
