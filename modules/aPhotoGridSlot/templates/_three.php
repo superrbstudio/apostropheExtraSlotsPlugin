@@ -7,6 +7,10 @@
   $title = count($items) > 1 ? __('Click For Next Image', null, 'apostrophe') : false;
 ?>
 
+<?php if (!count($items)): ?>
+	<?php include_partial('aPhotoGridSlot/placeholder', array('columns' => 3, 'boxSize' => $options['gridWidth']/3 )) ?>
+<?php endif ?>
+
 
 <?php foreach ($items as $item): ?>
 
@@ -36,7 +40,7 @@
  <?php $full = $item->getImgSrcUrl($fullDimensions['width'], $fullDimensions['height'], $fullDimensions['resizeType'], $fullDimensions['format'], false);  ?>
  
  <div class="a-grid-image">
-   <a href="<?php echo $full ?>" rel="lightbox"><img src="<?php echo $thumbnail ?>" /></a>
+   <a href="<?php echo $full ?>" class="light-box"><img src="<?php echo $thumbnail ?>" /></a>
    <?php /* ?> 
    $item->title
    $item->caption

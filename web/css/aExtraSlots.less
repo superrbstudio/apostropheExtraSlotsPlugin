@@ -220,10 +220,33 @@
 // 
 .a-slot.aPhotoGrid
 {
+  .a-photogrid-placeholder
+  {
+    display: block;
+    float: left;
+    width: 32.2%;
+    height: 32.2%;
+    margin: 0 1% 1% 0;
+    overflow: hidden;
+    background-color: #eee;
+    
+    .pusher
+    {
+      span
+      {
+       display: block;
+       text-align: center;
+       width:95%;
+       float: left;
+       margin: 47% 0;        
+      }
+    }
+  }
+  
   .a-grid-image
   {
     float: left;
-    width: 28%;
+    width: 32.3%;
     margin: 0 1% 1% 0;
     &:last-child
     {
@@ -231,6 +254,7 @@
     }
     img
     {
+      width: 100%;
       max-width: 100%;
       height: auto;
     }
