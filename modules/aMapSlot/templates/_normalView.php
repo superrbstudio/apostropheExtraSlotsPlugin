@@ -23,7 +23,7 @@
 	<?php (isset($options['width']) && $options['width'])?  $width = $options['width'] .'px;': $width = '100%;'; ?>
 	<?php (isset($options['height']) && $options['height'])? $height = $options['height'].'px;' : $height = (($options['width']) ? floor($options['width']*.56):'100px;'); ?>		
 	<?php $style = 'width:'.$width.' height:'.$height ?>
-	<div class="a-media-placeholder" style="<?php echo $style ?>">
+	<div class="a-media-placeholder clearfix" style="<?php echo $style ?>">
 		<span style="line-height:<?php echo $height ?>px;">Click edit to setup a map</span>
 	</div>
 <?php endif ?>
@@ -31,10 +31,10 @@
 <?php if ($options['address']): ?>
 
 <?php if ($options['title']): ?>
-	<h3 class="a-map-title"><?php echo $options['title']?></h3>	
+	<h3 class="a-map-title clearfix"><?php echo $options['title']?></h3>	
 <?php endif ?>
 
-<div class="a-map" id="a-map-<?php echo "$pageid-$name-$permid" ?>" style="width:<?php echo $options['width'] ?>px;height:<?php echo $options['height'] ?>px;">
+<div class="a-map clearfix" id="a-map-<?php echo "$pageid-$name-$permid" ?>">
 	<span class="a-map-address"><?php echo ($options['address']) ? $options['address'] : '' ?></span>
 </div>
 
