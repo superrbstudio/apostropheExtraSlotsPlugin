@@ -6,6 +6,7 @@ class BaseaAnchorTitleSlotComponents extends aSlotComponents
     // Must be at the start of both view components
     $this->setup();
  		$this->setupOptions();
+ 		
     // Careful, don't clobber a form object provided to us with validation errors
     // from an earlier pass
     if (!isset($this->form))

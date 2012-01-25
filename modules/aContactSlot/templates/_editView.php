@@ -13,14 +13,3 @@
 </div>
 
 <?php a_js_call('apostrophe.slotEnhancements(?)', array('slot' => '#a-slot-'.$pageid.'-'.$name.'-'.$permid, 'editClass' => 'a-options')) ?>
-
-<script type="text/javascript" charset="utf-8">
-// window.apostrophe.registerOnSubmit("<?php echo $id ?>", 
-//   function(slotId)
-//   {
-//     <?php # FCK doesn't do this automatically on an AJAX "form" submit on every major browser ?>
-//     var value = FCKeditorAPI.GetInstance('slotform-<?php echo $id ?>-description').GetXHTML();
-//     $('#slotform-<?php echo $id ?>-description').val(value);
-//   }
-// );
-</script>

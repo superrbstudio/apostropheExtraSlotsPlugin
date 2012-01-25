@@ -276,3 +276,117 @@
     padding: 0 0 56.25%;
   }
 }
+
+
+//
+//
+//
+.a-slot.aBetterTwitter
+{
+  .a-edit-view
+  {
+    .a-form-row
+    {
+      margin: 0 0 10px 0;
+      clear: both;
+      &:last-child
+      {
+       margin: 0; 
+      }
+      label
+      {
+        width: 30%;
+        margin: 0;
+        padding: 0;
+      } // label
+      .a-form-field
+      {
+        float: right;
+        width: 65%;
+        margin: 0;
+        padding: 0;
+      } // .a-form-field
+      .a-twitter-avatar-example
+      {
+        clear: both;
+      }
+      .a-twitter-avatar-example-badge
+      {
+        float:right;                
+        clear: both;
+        @a-border-radius(2px);
+        @a-rgba-background(#333; rgba(0,0,0,0.25));
+      }
+      &.search
+      {
+        .a-form-field
+        {
+          input
+          {
+            width: 160px;
+          }
+        }
+      }
+      &.avatar,
+      &.count
+      {
+        .a-form-field
+        {
+          input
+          {
+            width: 40px;
+            margin-right: 4px;
+          }
+        }
+      }
+    } // .a-form-row
+  } // .a-edit-view
+  &.a-normal
+  {
+    .a-slot-content
+    {
+      // Twitter Widget
+      // -------------------------------------------
+      .tweet,
+      .query
+      {
+      	.tweet_list
+      	{
+      		list-style-type: none;
+      		margin: 0; padding: 0;
+      		overflow-y: hidden;
+      		.awesome,
+      		.epic,
+      		.awesome,
+      		.epic
+      		{
+      			text-transform: uppercase;
+      		}
+      		li
+      		{
+      			overflow-y: auto;
+      			overflow-x: hidden;
+      			padding: .5em;
+      			a
+      			{
+      				color: @dark-blue;
+      			}
+      		}
+      		.tweet_even
+      		{
+      			background-color: rgba(0,0,0,0.125);
+      		}
+      		.tweet_avatar
+      		{
+      			padding-right: .5em;
+      			float: left;
+      			img
+      			{
+      				vertical-align: middle;
+      			}
+      		}
+      	}
+      }
+    }
+  }
+} // .a-slot.aBetterTwitter
