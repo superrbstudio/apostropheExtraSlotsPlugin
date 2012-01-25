@@ -34,7 +34,7 @@ class BaseaBetterTwitterSlotEditForm extends BaseForm
       'count' => 'Max Tweets', 
     ));
     $this->widgetSchema->setHelps(array(
-      'search' => 'Examples: <i>@Username</i> <i>#hashtag</i> <i>from:Username</i><br/>You can use AND / OR operators too! :)',
+      'search' => 'Examples: <i>@Username</i> <i>#hashtag</i> <i>from:Username</i><br/>You can use AND / OR operators too!. <a href="http://support.twitter.com/groups/31-twitter-basics/topics/110-search/articles/71577-how-to-use-advanced-twitter-search" rel="external">Need Help?</a>',
       'avatar' => 'Your twitter icon in pixels',
       'count' => 'Amount of tweets to show',   
     ));
