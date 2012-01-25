@@ -40,7 +40,7 @@
  <?php $full = $item->getImgSrcUrl($fullDimensions['width'], $fullDimensions['height'], $fullDimensions['resizeType'], $fullDimensions['format'], false);  ?>
  
  <div class="a-grid-image">
-   <a href="<?php echo $full ?>" class="light-box"><img src="<?php echo $thumbnail ?>" /></a>
+   <a href="<?php echo $full ?>" title="<?php echo $item->title ?>" class="light-box"><img src="<?php echo $thumbnail ?>" /></a>
    <?php /* ?> 
    $item->title
    $item->caption
