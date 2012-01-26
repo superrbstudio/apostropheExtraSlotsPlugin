@@ -58,4 +58,4 @@
 
 <?php include_partial('aPhotoGridSlot/'. $options['gridTemplate'], array('items' => $items, 'id' => $id, 'options' => $options, 'placeholder' => count($items))) ?>
 
-<?php a_js_call('aLog("PUT YOUR JAVASCRIPTS HURR")') ?>
+<?php a_js_call('aExtraSlots.initLightbox(?)','') ?>

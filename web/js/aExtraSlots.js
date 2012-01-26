@@ -60,6 +60,13 @@ function aExtraSlotsConstructor()
 			}
 		}
 	}
+	
+	// Initialize lightbox js for photoGridSlot :
+	
+	this.initLightbox = function()
+	{
+		$('.light-box').lightBox();
+	}
 }
 
 function aMapSlotConstructor()
