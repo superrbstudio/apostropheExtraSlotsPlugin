@@ -28,6 +28,7 @@ class aReusableSlideshowSlotEditForm extends BaseForm
       else
       {
         $defaults['label'] = $aReusableSlot['label'];
+        $defaults['blurb'] = $aReusableSlot['blurb'];
         $defaults['label_or_reuse'] = 'label';
       }
     }
