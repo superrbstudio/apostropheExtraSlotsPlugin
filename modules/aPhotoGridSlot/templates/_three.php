@@ -13,11 +13,13 @@
 
 
 <?php foreach ($items as $item): ?>
+  <?php // Returns same object where applicable ?>
+  <?php $original = $item->getCropOriginal() ?>
 
   <?php $thumbnailDimensions = aDimensions::constrain(
-    $item->width,
-    $item->height,
-    $item->format,
+    $original->width,
+    $original->height,
+    $original->format,
     array(
       "width" =>  $options['gridWidth']/3,
       "height" => $options['gridWidth']/3,
@@ -36,7 +38,7 @@
   )) ?>
 
 
- <?php $thumbnail = $item->getImgSrcUrl($thumbnailDimensions['width'], $thumbnailDimensions['height'], $thumbnailDimensions['resizeType'], $thumbnailDimensions['format'], false); ?>
+ <?php $thumbnail = $original->getImgSrcUrl($thumbnailDimensions['width'], $thumbnailDimensions['height'], $thumbnailDimensions['resizeType'], $thumbnailDimensions['format'], false); ?>
  <?php $full = $item->getImgSrcUrl($fullDimensions['width'], $fullDimensions['height'], $fullDimensions['resizeType'], $fullDimensions['format'], false);  ?>
  
  <div class="a-grid-image">
