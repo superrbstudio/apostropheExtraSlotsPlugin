@@ -11,7 +11,6 @@ class aEtsySlotEditForm extends BaseForm
   public function configure()
   {
     $this->setWidgets(array('etsy_code' => new sfWidgetFormTextarea(array('label' => 'Etsy Mini code'))));
-    $this->setValidators(array('etsy_code' => new sfValidatorString(array('required' => false, 'max_length' => 100))));
     $this->widgetSchema->setHelp('etsy_code', 'Hint: go to <a href="http://etsy.com/" target="application">etsy.com</a>, click "Your Shop," then click "Etsy Mini" under "Promote" in the left-hand column. Make your selections, then copy and paste the code that appears here.');
     $this->setValidators(array('etsy_code' => new sfValidatorString(array('required' => true, 'max_length' => 5000))));
     
