@@ -100,7 +100,7 @@ function aMapSlotConstructor()
 			apostrophe.log('aMapSlot -- loadGoogleMapsAPI: NOT Loaded');
 		  var script = document.createElement("script");
 		  script.type = "text/javascript";
-		  script.src = "http://maps.google.com/maps/api/js?sensor=false&callback=aMapSlot.loaded";
+		  script.src = ('https:' == document.location.protocol ? 'https' : 'http')+"://maps.google.com/maps/api/js?sensor=false&callback=aMapSlot.loaded";
 		  document.body.appendChild(script);
 		}
 	};
