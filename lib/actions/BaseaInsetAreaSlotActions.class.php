@@ -2,8 +2,8 @@
 
 class BaseaInsetAreaSlotActions extends aSlotActions
 {
-  
-  // Use the edit view for the URL (and any other well-behaved fields that may arise) 
+
+  // Use the edit view for the URL (and any other well-behaved fields that may arise)
   public function executeEdit(sfRequest $request)
   {
     $this->logMessage("====== in aInsetAreaSlotActions::executeEdit", "info");
@@ -29,7 +29,7 @@ class BaseaInsetAreaSlotActions extends aSlotActions
 		if ($this->form->isValid())
 		{
       $value = $this->form->getValue('value');
-      $this->slot->value = $value;      
+      $this->slot->value = $value;
       $result = $this->editSave();
       return $result;
 		}
