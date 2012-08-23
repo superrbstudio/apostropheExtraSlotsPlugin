@@ -43,7 +43,8 @@ class BaseaInsetAreaSlotComponents extends aSlotComponents
     $data = $this->slot->getValue('value');
     if ($this->options['value'])
     {
-			if (isset($data['value'])) {
+			if (strlen($data))
+      {
       	$this->options['value'] = $data;
 			}
 			else
