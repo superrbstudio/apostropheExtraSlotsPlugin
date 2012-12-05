@@ -11,10 +11,10 @@ aInsetImageSlot:
   # columns:
   #
   # You can add columns here. However, if you do not need foreign key relationships it is
-  # often easier to store your data in the 'value' column via serialize(). If you do add columns, 
-  # their names must be unique across all slots in your project, so use a unique prefix 
+  # often easier to store your data in the 'value' column via serialize(). If you do add columns,
+  # their names must be unique across all slots in your project, so use a unique prefix
   # for your company.
-    
+
   # This is how we are able to retrieve slots of various types with a single query from
   # a single table
   inheritance:
@@ -35,10 +35,10 @@ aInsetAreaSlot:
   # columns:
   #
   # You can add columns here. However, if you do not need foreign key relationships it is
-  # often easier to store your data in the 'value' column via serialize(). If you do add columns, 
-  # their names must be unique across all slots in your project, so use a unique prefix 
+  # often easier to store your data in the 'value' column via serialize(). If you do add columns,
+  # their names must be unique across all slots in your project, so use a unique prefix
   # for your company.
-    
+
   # This is how we are able to retrieve slots of various types with a single query from
   # a single table
   inheritance:
@@ -59,10 +59,10 @@ aBlogSlideshowSlot:
   # columns:
   #
   # You can add columns here. However, if you do not need foreign key relationships it is
-  # often easier to store your data in the 'value' column via serialize(). If you do add columns, 
-  # their names must be unique across all slots in your project, so use a unique prefix 
+  # often easier to store your data in the 'value' column via serialize(). If you do add columns,
+  # their names must be unique across all slots in your project, so use a unique prefix
   # for your company.
-    
+
   # This is how we are able to retrieve slots of various types with a single query from
   # a single table
   inheritance:
@@ -83,10 +83,10 @@ aMapSlot:
   # columns:
   #
   # You can add columns here. However, if you do not need foreign key relationships it is
-  # often easier to store your data in the 'value' column via serialize(). If you do add columns, 
-  # their names must be unique across all slots in your project, so use a unique prefix 
+  # often easier to store your data in the 'value' column via serialize(). If you do add columns,
+  # their names must be unique across all slots in your project, so use a unique prefix
   # for your company.
-    
+
   # This is how we are able to retrieve slots of various types with a single query from
   # a single table
   inheritance:
@@ -107,10 +107,10 @@ aEmbedFormSlot:
   # columns:
   #
   # You can add columns here. However, if you do not need foreign key relationships it is
-  # often easier to store your data in the 'value' column via serialize(). If you do add columns, 
-  # their names must be unique across all slots in your project, so use a unique prefix 
+  # often easier to store your data in the 'value' column via serialize(). If you do add columns,
+  # their names must be unique across all slots in your project, so use a unique prefix
   # for your company.
-    
+
   # This is how we are able to retrieve slots of various types with a single query from
   # a single table
   inheritance:
@@ -131,10 +131,10 @@ aPaypalButtonSlot:
   # columns:
   #
   # You can add columns here. However, if you do not need foreign key relationships it is
-  # often easier to store your data in the 'value' column via serialize(). If you do add columns, 
-  # their names must be unique across all slots in your project, so use a unique prefix 
+  # often easier to store your data in the 'value' column via serialize(). If you do add columns,
+  # their names must be unique across all slots in your project, so use a unique prefix
   # for your company.
-    
+
   # This is how we are able to retrieve slots of various types with a single query from
   # a single table
   inheritance:
@@ -155,10 +155,10 @@ aWufooFormSlot:
   # columns:
   #
   # You can add columns here. However, if you do not need foreign key relationships it is
-  # often easier to store your data in the 'value' column via serialize(). If you do add columns, 
-  # their names must be unique across all slots in your project, so use a unique prefix 
+  # often easier to store your data in the 'value' column via serialize(). If you do add columns,
+  # their names must be unique across all slots in your project, so use a unique prefix
   # for your company.
-    
+
   # This is how we are able to retrieve slots of various types with a single query from
   # a single table
   inheritance:
@@ -166,7 +166,7 @@ aWufooFormSlot:
     type: column_aggregation
     keyField: type
     keyValue: 'aWufooForm'
-    
+
 aContactSlot:
   # Doctrine doesn't produce useful forms with column aggregation inheritance anyway,
   # and slots often use serialization into the value column... the Doctrine forms are not
@@ -179,8 +179,8 @@ aContactSlot:
   # columns:
   #
   # You can add columns here. However, if you do not need foreign key relationships it is
-  # often easier to store your data in the 'value' column via serialize(). If you do add columns, 
-  # their names must be unique across all slots in your project, so use a unique prefix 
+  # often easier to store your data in the 'value' column via serialize(). If you do add columns,
+  # their names must be unique across all slots in your project, so use a unique prefix
   # for your company.
 
   # This is how we are able to retrieve slots of various types with a single query from
@@ -189,7 +189,7 @@ aContactSlot:
     extends: aSlot
     type: column_aggregation
     keyField: type
-    keyValue: 'aContact'    
+    keyValue: 'aContact'
 
 aAnchorTitleSlot:
   # Doctrine doesn't produce useful forms with column aggregation inheritance anyway,
@@ -203,10 +203,10 @@ aAnchorTitleSlot:
   # columns:
   #
   # You can add columns here. However, if you do not need foreign key relationships it is
-  # often easier to store your data in the 'value' column via serialize(). If you do add columns, 
-  # their names must be unique across all slots in your project, so use a unique prefix 
+  # often easier to store your data in the 'value' column via serialize(). If you do add columns,
+  # their names must be unique across all slots in your project, so use a unique prefix
   # for your company.
-    
+
   # This is how we are able to retrieve slots of various types with a single query from
   # a single table
   inheritance:
@@ -227,8 +227,8 @@ aEtsySlot:
   # columns:
   #
   # You can add columns here. However, if you do not need foreign key relationships it is
-  # often easier to store your data in the 'value' column via serialize(). If you do add columns, 
-  # their names must be unique across all slots in your project, so use a unique prefix 
+  # often easier to store your data in the 'value' column via serialize(). If you do add columns,
+  # their names must be unique across all slots in your project, so use a unique prefix
   # for your company.
 
   # This is how we are able to retrieve slots of various types with a single query from
@@ -251,10 +251,10 @@ aReusableSlideshowSlot:
   # columns:
   #
   # You can add columns here. However, if you do not need foreign key relationships it is
-  # often easier to store your data in the 'value' column via serialize(). If you do add columns, 
-  # their names must be unique across all slots in your project, so use a unique prefix 
+  # often easier to store your data in the 'value' column via serialize(). If you do add columns,
+  # their names must be unique across all slots in your project, so use a unique prefix
   # for your company.
-    
+
   # This is how we are able to retrieve slots of various types with a single query from
   # a single table
   inheritance:
@@ -268,7 +268,7 @@ aReusableSlideshowSlot:
 # a master table of these, giving the label (a descriptive name entered
 # by the original user to help others reuse the content intelligently),
 # the type of the slot (to filter effectively before the join), and
-# the page id, area name and permid (which can be used to locate the 
+# the page id, area name and permid (which can be used to locate the
 # appropriate content slot - note that you'll want the latest version of
 # that slot, fetched by the usual means). Take special care not to panic
 # if the slot does not exist anymore in the current version of its page.
@@ -276,12 +276,12 @@ aReusableSlideshowSlot:
 
 aReusableSlot:
   columns:
-    label: 
+    label:
       type: string(100)
       notnull: true
     blurb:
       type: clob
-    type: 
+    type:
       type: string(100)
       notnull: true
     page_id:
@@ -310,10 +310,10 @@ aPhotoGridSlot:
   # columns:
   #
   # You can add columns here. However, if you do not need foreign key relationships it is
-  # often easier to store your data in the 'value' column via serialize(). If you do add columns, 
-  # their names must be unique across all slots in your project, so use a unique prefix 
+  # often easier to store your data in the 'value' column via serialize(). If you do add columns,
+  # their names must be unique across all slots in your project, so use a unique prefix
   # for your company.
-    
+
   # This is how we are able to retrieve slots of various types with a single query from
   # a single table
   inheritance:
@@ -334,10 +334,10 @@ betterTwitterSlot:
   # columns:
   #
   # You can add columns here. However, if you do not need foreign key relationships it is
-  # often easier to store your data in the 'value' column via serialize(). If you do add columns, 
-  # their names must be unique across all slots in your project, so use a unique prefix 
+  # often easier to store your data in the 'value' column via serialize(). If you do add columns,
+  # their names must be unique across all slots in your project, so use a unique prefix
   # for your company.
-    
+
   # This is how we are able to retrieve slots of various types with a single query from
   # a single table
   inheritance:
@@ -358,10 +358,10 @@ aBetterTwitterSlot:
   # columns:
   #
   # You can add columns here. However, if you do not need foreign key relationships it is
-  # often easier to store your data in the 'value' column via serialize(). If you do add columns, 
-  # their names must be unique across all slots in your project, so use a unique prefix 
+  # often easier to store your data in the 'value' column via serialize(). If you do add columns,
+  # their names must be unique across all slots in your project, so use a unique prefix
   # for your company.
-    
+
   # This is how we are able to retrieve slots of various types with a single query from
   # a single table
   inheritance:
@@ -382,10 +382,10 @@ aEcwidProductSlot:
   # columns:
   #
   # You can add columns here. However, if you do not need foreign key relationships it is
-  # often easier to store your data in the 'value' column via serialize(). If you do add columns, 
-  # their names must be unique across all slots in your project, so use a unique prefix 
+  # often easier to store your data in the 'value' column via serialize(). If you do add columns,
+  # their names must be unique across all slots in your project, so use a unique prefix
   # for your company.
-    
+
   # This is how we are able to retrieve slots of various types with a single query from
   # a single table
   inheritance:
@@ -406,10 +406,10 @@ aPollSlot:
   # columns:
   #
   # You can add columns here. However, if you do not need foreign key relationships it is
-  # often easier to store your data in the 'value' column via serialize(). If you do add columns, 
-  # their names must be unique across all slots in your project, so use a unique prefix 
+  # often easier to store your data in the 'value' column via serialize(). If you do add columns,
+  # their names must be unique across all slots in your project, so use a unique prefix
   # for your company.
-    
+
   # This is how we are able to retrieve slots of various types with a single query from
   # a single table
   inheritance:
@@ -417,3 +417,45 @@ aPollSlot:
     type: column_aggregation
     keyField: type
     keyValue: 'aPoll'
+
+aPoll:
+  columns:
+    media_item_id:
+      type: integer
+      default: null
+    question:
+      type: string(255)
+      notnull: true
+  relations:
+    PollChoices:
+      type: many
+      class: aPollChoice
+      local: id
+      foreign: poll_id
+    MediaItem:
+      type: one
+      class: aMediaItem
+      local: media_item_id
+      foreign: id
+      onDelete: SET NULL
+
+aPollChoice:
+  columns:
+    name:
+      type: string(255)
+      notnull: true
+    count:
+      type: integer
+      default: 0
+      notnull: true
+    poll_id:
+      type: integer
+      notnull: true
+  relations:
+    Poll:
+      type: one
+      class: aPoll
+      local: poll_id
+      foreign: id
+      onDelete: CASCADE
+

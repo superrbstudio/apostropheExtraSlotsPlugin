@@ -16,9 +16,9 @@ class aPollSlotEditForm extends BaseForm
     $this->setWidgets(array(
       #'text' => new sfWidgetFormTextarea(),
       'poll_id'  => new sfWidgetFormDoctrineChoice(array(
-        'model'     => 'Poll',
+        'model'     => 'aPoll',
         'add_empty' => 'Select a Poll',
-        'order_by'  => array('name', 'asc')
+        'order_by'  => array('question', 'asc')
       )),
     ));
 
