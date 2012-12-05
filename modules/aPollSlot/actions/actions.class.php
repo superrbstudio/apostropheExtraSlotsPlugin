@@ -27,5 +27,24 @@ class aPollSlotActions extends aSlotActions
       return $this->editRetry();
     }
   }
+
+  public function executeVote(sfWebRequest $request)
+  {
+    $this->choice = Doctrine::getTable('aPollChoice')->find($request->getParameter('choice_id'));
+    $this->forward404Unless($this->choice);
+    $this->poll = $this->choice->getPoll();
+    if ($this->getUser()->getAttribute('poll-' . $this->poll->getId()))
+    {
+      // Do nothing already voted
+    }
+    else
+    {
+      $this->getUser()->setAttribute('poll-' . $this->poll->getId(), true);
+      $this->choice->count++;
+      $this->choice->save();
+    }
+    echo(json_encode(array('count' => $this->choice->count, 'status' => 'ok')));
+    exit(0);
+  }
 }
   

@@ -427,7 +427,7 @@ aPoll:
       type: string(255)
       notnull: true
   relations:
-    PollChoices:
+    Choices:
       type: many
       class: aPollChoice
       local: id

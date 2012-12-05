@@ -17,5 +17,10 @@ class aPollSlotComponents extends aSlotComponents
   {
     $this->setup();
     $this->values = $this->slot->getArrayValue();
+    $this->poll = null;
+    if (isset($this->values['poll_id']))
+    {
+      $this->poll = Doctrine::getTable('aPoll')->findOneById($this->values['poll_id']);
+    }
   }
 }

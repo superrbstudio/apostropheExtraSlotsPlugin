@@ -14,9 +14,13 @@ generator:
     config:
       actions: ~
       fields:  ~
-      list:    ~
+      list:
+        title: Poll Admin
+        display: [ question ]
       filter:  ~
       form:
-        #display: [question]
-      edit:    ~
-      new:     ~
+        display: [ question, choices_list ]
+      edit:
+        title: Edit Poll
+      new:
+        title: New Poll

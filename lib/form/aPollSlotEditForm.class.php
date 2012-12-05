@@ -18,11 +18,12 @@ class aPollSlotEditForm extends BaseForm
       'poll_id'  => new sfWidgetFormDoctrineChoice(array(
         'model'     => 'aPoll',
         'add_empty' => 'Select a Poll',
+        'method' => 'getQuestion',
         'order_by'  => array('question', 'asc')
       )),
     ));
 
-    #$this->setValidators(array('text' => new sfValidatorString(array('required' => false, 'max_length' => 100))));
+    $this->setValidators(array('poll_id' => new sfValidatorDoctrineChoice(array('required' => true, 'model' => 'aPoll'))));
 
     // Ensures unique IDs throughout the page. Hyphen between slot and form to please our CSS
     $this->widgetSchema->setNameFormat('slot-form-' . $this->id . '[%s]');
