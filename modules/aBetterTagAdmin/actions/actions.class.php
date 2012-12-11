@@ -42,11 +42,8 @@ class aBetterTagAdminActions extends sfActions
     }
     $q .= 'LEFT JOIN tagging ti ON t.id = ti.tag_id ';
     $q .= 'GROUP BY t.id, ti.taggable_model ORDER BY t.name ';
-    $start = microtime(true);
     $data = $sql->query($q);
-    error_log('Query took ' . (microtime(true) - $start));
     $infoByTag = array();
-    $start = microtime(true);
     foreach ($data as $row)
     {
       $infosByTag[$row['name']][$row['model']] = $row['count_for_model'];
@@ -58,7 +55,6 @@ class aBetterTagAdminActions extends sfActions
       $infosByTag[$row['name']]['id'] = $row['id'];
     }
     $this->tagInfos = array_values($infosByTag);
-    error_log('Frob took ' . (microtime(true) - $start));
     if (class_exists('aEntityTools'))
     {
       $this->classInfos = aEntityTools::getClassInfos();
