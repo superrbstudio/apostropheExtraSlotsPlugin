@@ -55,12 +55,16 @@
         <a class="action" href="#" data-tag-save>Rename Tag</a>
         <a class="action" href="#" data-tag-delete>Delete Tag</a>
         <?php if ($classInfos): ?>
+          <?php // Only one of the select element and the sync button will appear ?>
+          <?php // in any given case depending on whether the tag already corresponds ?>
+          <?php // to an entity ?>
           <select class="action" name="class" data-tag-entity>
             <option value="">Create Entity</option>
             <?php foreach ($sf_data->getRaw('classInfos') as $class => $classInfo): ?>
               <option value="<?php echo $class ?>"><?php echo aHtml::entities($classInfo['singular']) ?></option>
             <?php endforeach ?>
           </select>
+          <a class="action" href="#" data-tag-entity-sync>Sync to <span data-tag-entity-type-label>Person</span></a>
         <?php endif ?>
         <a class="action" href="#" data-tag-cancel>Cancel</a>
       </td>
@@ -69,6 +73,9 @@
 </table>
 
 <script type="text/javascript">
+  <?php if ($classInfos): ?>
+    var classInfos = <?php echo json_encode($sf_data->getRaw('classInfos')) ?>;
+  <?php endif ?>
   var models = <?php echo json_encode($sf_data->getRaw('models')) ?>;
   var tags = <?php echo json_encode($sf_data->getRaw('tagInfos')) ?>;
   var renameUrl = <?php echo json_encode(url_for('aBetterTagAdmin/rename')) ?>;
@@ -103,6 +110,9 @@
       _.each(tags, function(tag) {
         var dataRow = dataRowTemplate.clone();
         dataRow.attr('data-tag-id', tag.id);
+        if (tag.type) {
+          dataRow.attr('data-tag-entity-type', tag.type);
+        }
         dataRow.attr('data-tag-name', tag.name);
         dataRow.removeClass('template');
         if (tag.name === '')
@@ -167,6 +177,16 @@
       }
 
       function enableControls() {
+        // If it already has a matching entity present a sync button,
+        // otherwise a select element to create one
+        if (activeRow.attr('data-tag-entity-type')) {
+          activeRow.find('[data-tag-entity-type-label]').text(classInfos[activeRow.attr('data-tag-entity-type')].singular);
+          activeRow.find('[data-tag-entity]').hide();
+          activeRow.find('[data-tag-entity-sync]').show();
+        } else {
+          activeRow.find('[data-tag-entity]').show();
+          activeRow.find('[data-tag-entity-sync]').hide();
+        }
         activeRow.find('[data-tag-save]').click(function() {
           var button = $(this);
           var id = activeRow.attr('data-tag-id');
@@ -229,10 +249,20 @@
           var className = activeRow.find('[data-tag-entity]').val();
           $.post(createEntityUrl, { id: id, className: className }, function(data) {
             if (data.status === 'ok') {
+              activeRow.attr('data-tag-entity-type', className);
               hideControls();
               highlight(id);
             }
           }, 'json');
+        });
+
+        activeRow.find('[data-tag-entity-sync]').click(function() {
+          var id = activeRow.attr('data-tag-id');
+          $.post(createEntityUrl, { id: id }, function(data) {
+            hideControls();
+            highlight(id);
+          }, 'json');
+          return false;
         });
       }
 

@@ -30,16 +30,35 @@ class aBetterTagAdminActions extends sfActions
       $this->models[] = array('name' => $class, 'label' => isset($modelLabels[$class]) ? $modelLabels[$class] : $class);
     }
 
-    $data = $sql->query('SELECT t.id as id, t.name as name, ti.taggable_model as model, COUNT(ti.taggable_id) AS count_for_model FROM tag t LEFT JOIN tagging ti ON t.id = ti.tag_id GROUP BY t.id, ti.taggable_model ORDER BY t.name');
-
+    $q = 'SELECT t.id as id, t.name as name, ti.taggable_model as model, ';
+    if (class_exists('aEntityTools'))
+    {
+      $q .= 'e.type as type, ';
+    }
+    $q .= 'COUNT(ti.taggable_id) AS count_for_model FROM tag t ';
+    if (class_exists('aEntityTools')) 
+    {
+      $q .= 'LEFT JOIN a_entity e ON e.name = t.name ';
+    }
+    $q .= 'LEFT JOIN tagging ti ON t.id = ti.tag_id ';
+    $q .= 'GROUP BY t.id, ti.taggable_model ORDER BY t.name ';
+    $start = microtime(true);
+    $data = $sql->query($q);
+    error_log('Query took ' . (microtime(true) - $start));
     $infoByTag = array();
+    $start = microtime(true);
     foreach ($data as $row)
     {
       $infosByTag[$row['name']][$row['model']] = $row['count_for_model'];
       $infosByTag[$row['name']]['name']= $row['name'];
+      if (isset($row['type']))
+      {
+        $infosByTag[$row['name']]['type'] = $row['type'];
+      }
       $infosByTag[$row['name']]['id'] = $row['id'];
     }
     $this->tagInfos = array_values($infosByTag);
+    error_log('Frob took ' . (microtime(true) - $start));
     if (class_exists('aEntityTools'))
     {
       $this->classInfos = aEntityTools::getClassInfos();
@@ -105,13 +124,7 @@ class aBetterTagAdminActions extends sfActions
   public function executeCreateEntity(sfWebRequest $request)
   {
     $sql = new aMysql();
-    $class = $this->getRequestParameter('className');
     $id = $this->getRequestParameter('id');
-    $info = aEntityTools::getClassInfo($class);
-    if (!$info)
-    {
-      return $this->jsonResponse(array('status' => 'invalid'));
-    }
     $classes = array_keys(aEntityTools::getClassInfos());
     $tag = $sql->queryOne('SELECT * FROM tag WHERE id = :id', array('id' => $id));
     if (!$tag)
@@ -119,11 +132,21 @@ class aBetterTagAdminActions extends sfActions
       return $this->jsonResponse(array('status' => 'invalid'));
     }
     $entity = Doctrine::getTable('aEntity')->findOneByName($tag['name']);
-    if (!$entity) 
+    if ($entity)
     {
+      $class = get_class($entity);
+    }
+    else
+    {
+      $class = $this->getRequestParameter('className');
       $entity = new $class;
       $entity->setName($tag['name']);
       $entity->save();
+    }
+    $info = aEntityTools::getClassInfo($class);
+    if (!$info)
+    {
+      return $this->jsonResponse(array('status' => 'invalid'));
     }
     if (count($classes))
     {
