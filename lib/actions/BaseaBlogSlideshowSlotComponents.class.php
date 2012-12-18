@@ -15,6 +15,7 @@ class BaseaBlogSlideshowSlotComponents extends BaseaBlogSlotComponents
     $this->options['flexHeight'] = $this->getOption('flexHeight');
     $this->options['interval'] = $this->getOption('interval', 0) + 0;
     $this->options['arrows'] = $this->getOption('arrows', true);
+    $this->options['uncropped'] = $this->getOption('uncropped', false);
     $this->options['transition'] = ($this->options['height']) ? $this->getOption('transition', 'normal') : 'normal-forced';
     $this->options['duration'] = $this->getOption('duration', 300) + 0;
     $this->options['position'] = $this->getOption('position', false);
