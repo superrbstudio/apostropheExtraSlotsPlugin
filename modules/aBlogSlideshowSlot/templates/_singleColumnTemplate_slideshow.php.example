@@ -16,7 +16,7 @@
   <?php if($aBlogPost->hasMedia()): ?>
   	<div class="a-blog-item-media">
   	<?php include_component('aSlideshowSlot', 'slideshow', array(
-  	  'items' => $aBlogPost->getMediaForArea('blog-body', 'image', 1), // We only have one image pulled. NO image slideshow in a blog post slideshow craziness
+  	  'items' => $aBlogPost->getMediaForArea('blog-body', 'image', 1, array('uncropped' => isset($options['uncropped']) ? $options['uncropped'] : null)), // We only have one image pulled. NO image slideshow in a blog post slideshow craziness
   	  'id' => 'a-slideshow-blogitem-'.$aBlogPost['id'],
   	  'options' => $options
   	  )) ?>

@@ -28,10 +28,13 @@ class BaseaBlogSlideshowSlotComponents extends BaseaBlogSlotComponents
 
   public function executeNormalView()
   {
-		// execute the normalView of the normal blog slot
+    // We need to do this first or it has no bearing on anything executeNormalView does
+
+    // Add the options we need for the slideshow
+    $this->setupSlideshowOptions();
+
+		// Execute the normalView of the normal blog slot
 		parent::executeNormalView();
-		// and add the options we need for the slideshow
-		$this->setupSlideshowOptions();
   }
 
 }
