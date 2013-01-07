@@ -10,4 +10,10 @@
  */
 abstract class PluginaPollFormFilter extends BaseaPollFormFilter
 {
+  public function setup()
+  {
+    parent::setup();
+    // Infeasible with thousands of items as is commonly the case
+    unset($this['media_item_id']);
+  }
 }
