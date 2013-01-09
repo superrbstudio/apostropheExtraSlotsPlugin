@@ -67,6 +67,39 @@ function aExtraSlotsConstructor()
 	{
 		$('.light-box').lightBox();
 	}
+
+	this.enablePoll = function( options ) {
+
+	  var id        = options.id,
+	      url       = options.url,
+	      poll      = $( '[data-poll-id="' + id + '"]' ),
+	      choice    = null;
+
+	  poll.find( '[data-choice-id]' ).on( 'click', function( e ) {
+
+	    choice = $( this );
+
+	    $.post( url, { choice_id: choice.attr( 'data-choice-id' ) }, function( data ) {
+
+	      if ( data && ( data.status === 'ok' ) ) {
+
+	        choice.find( '[data-count]' ).text( data.count );
+	        poll.find( '[data-voted]' ).show();
+
+	        poll.find( '[data-choice-id]' ).removeClass( 'active' );
+
+	        choice.addClass( 'active' );
+
+	      }
+
+	    }, 'json' );
+
+	    e.preventDefault();
+
+	  } );
+
+	};
+
 }
 
 function aMapSlotConstructor()
