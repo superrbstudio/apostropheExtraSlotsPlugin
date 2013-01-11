@@ -12,5 +12,6 @@
  */
 abstract class PluginaPollSlot extends BaseaPollSlot
 {
-
+  // Go straight to edit mode for a newly added poll slot
+  protected $editDefault = true;
 }

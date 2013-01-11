@@ -1,0 +1,16 @@
+# Routes here are commented out because you can't override them easily
+# at project level. You should copy and paste them to your project level
+# routing.yml if you use the features they refer to.
+
+# a_poll:
+#   class: sfDoctrineRouteCollection
+#   options:
+#     model:                aPoll
+#     module:               aPollAdmin
+#     prefix_path:          /admin/polls
+#     column:               id
+#     with_wildcard_routes: true
+
+# a_poll_vote:
+#   url: /poll-vote
+#   param: { module: aPollSlot, action: vote }
