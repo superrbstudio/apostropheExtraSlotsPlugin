@@ -20,6 +20,8 @@ class BaseaBlogSlideshowSlotComponents extends BaseaBlogSlotComponents
     $this->options['duration'] = $this->getOption('duration', 300) + 0;
     $this->options['position'] = $this->getOption('position', false);
     $this->options['random'] = $this->getOption('random', false);
+    $this->options['clickToRead'] = $this->getOption('clickToRead', true);
+
     // idSuffix works with the Blog Slot slideshows
     // Creates unique ids for the same slideshows if they show up in separate slots on a single page.
     $this->options['idSuffix'] = $this->getOption('idSuffix', false);

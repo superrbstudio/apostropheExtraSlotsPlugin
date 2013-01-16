@@ -12,7 +12,7 @@
   $page = isset($page) ? $sf_data->getRaw('page') : null;
   $permid = isset($permid) ? $sf_data->getRaw('permid') : null;
   $slot = isset($slot) ? $sf_data->getRaw('slot') : null;
-  $title = count($aBlogPosts) > 1 ? __('Click For Next Post', null, 'apostrophe') : false;
+  $title = count($aBlogPosts) > 1 ? ($options['clickToRead'] ? __('Click To Read', null, 'apostrophe') : __('Click For Next Image', null, 'apostrophe')) : false;
   $id = isset($id) ? $sf_data->getRaw('id') : null;
 	$id = ($options['idSuffix']) ? $id.'-'.$options['idSuffix']:$id;
 ?>
@@ -37,6 +37,12 @@
 	'debug' => true,
 	'slideshowSelector' => '#a-blog-slideshow-'.$id,
 	'slideshowItemsSelector' => '.a-blog-item', 
+  // If the user clicks on the image itself, navigate to the href of
+  // this element contained in the same slideshow item, rather than
+  // advancing to the next image. This gets us to the blog post 
+  // as the user intuitively expects. They can use the arrows if they
+  // want to explore otherwise
+  'linkSelector' => $options['clickToRead'] ? '.a-blog-item-title a' : null,
 	'id' => $id,
 	'position' => $options['position'], 
 	'interval' => $options['interval'],  
