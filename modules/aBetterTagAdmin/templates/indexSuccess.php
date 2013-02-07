@@ -144,7 +144,7 @@
       var activeRow;
 
       // Toggle open the editor for a row
-      $('[data-row]').click(function() {
+      table.on('click', '[data-row]', function() {
         // Don't interfere with a click on the thing we're already editing
         if (activeRow && ($(this).attr('data-tag-id') === activeRow.attr('data-tag-id')))
         {
