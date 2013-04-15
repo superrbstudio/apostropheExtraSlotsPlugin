@@ -42,7 +42,7 @@
   // advancing to the next image. This gets us to the blog post 
   // as the user intuitively expects. They can use the arrows if they
   // want to explore otherwise
-  'linkSelector' => $options['clickToRead'] ? '.a-blog-item-title a' : null,
+  'linkSelector' => $options['clickToRead'] ? '.a-slideshow-link' : null,
 	'id' => $id,
 	'position' => $options['position'], 
 	'interval' => $options['interval'],  
