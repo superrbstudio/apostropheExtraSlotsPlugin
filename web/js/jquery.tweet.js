@@ -24,6 +24,7 @@
       twitter_api_url: "api.twitter.com",       // [string]   custom twitter api url, if any (apigee, etc.)
       twitter_search_url: "search.twitter.com", // [string]   custom twitter search url, if any (apigee, etc.)
       template: "{avatar}{time}{join}{text}",   // [string or function] template used to construct each tweet <li> - see code for available vars
+      local_api: "/api/twitter",                // [string]   new route on the local server that will do OAuth for us
       comparator: function(tweet1, tweet2) {    // [function] comparator used to sort tweets (see Array.sort)
         return tweet2["tweet_time"] - tweet1["tweet_time"];
       },
@@ -116,7 +117,8 @@
       return 'about ' + r;
     }
 
-    function build_url() {
+    // this version of the twitter API is deprecated.
+    function build_old_url() {
       var proto = ('https:' == document.location.protocol ? 'https:' : 'http:');
       var count = (s.fetch === null) ? s.count : s.fetch;
       if (s.list) {
@@ -128,6 +130,19 @@
       } else {
         var query = (s.query || 'from:'+s.username.join(' OR from:'));
         return proto+'//'+s.twitter_search_url+'/search.json?&q='+encodeURIComponent(query)+'&rpp='+count+'&callback=?';
+      }
+    }
+
+    // workaround for twitter API v1.1, which requires OAuth: there is a route on the server which will authenticate for us.
+    // we will pass it the same data that we intend to pass along to twitter.
+    function build_url() {
+      var proto = ('https:' == document.location.protocol ? 'https:' : 'http:');
+      var count = (s.fetch === null) ? s.count : s.fetch;
+      if (s.query === null && s.username.length == 1) {
+        return s.local_api+s.username[0]+'&count='+count+(s.retweets ? '&include_rts=1' : '');
+      } else {
+        var query = (s.query || 'from:'+s.username.join(' OR from:'));
+        return s.local_api+'?q='+encodeURIComponent(query)+'&count='+count;
       }
     }
 
@@ -154,6 +169,7 @@
 
       if (s.loading_text) $(widget).append(loading);
       $(widget).bind("load", function(){
+        
         $.getJSON(build_url(), function(data){
           if (s.loading_text) loading.remove();
           if (s.intro_text) list.before(intro);
